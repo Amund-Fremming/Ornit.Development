@@ -1,0 +1,6 @@
+@FeatureBasic_HostAddress = http://localhost:5016
+
+GET {{FeatureBasic_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
