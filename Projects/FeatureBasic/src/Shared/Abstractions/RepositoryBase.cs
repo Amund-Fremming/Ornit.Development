@@ -1,16 +1,19 @@
-﻿namespace FeatureBasic.src.Shared.Abstractions
+﻿using FeatureBasic.src.Features.Data;
+
+namespace FeatureBasic.src.Shared.Abstractions
 {
-    public abstract class RepositoryBase<TEntity, TClass>(ILogger<TClass> logger, IAppDbContext context) : IRepository<TEntity> where TEntity : IIdentityEntity
+    public abstract class RepositoryBase<TEntity, TClass>(ILogger<TClass> logger, AppDbContext context) : IRepository<TEntity> where TEntity : IIdentityEntity
     {
         public async Task<TEntity> GetByID(int id)
         {
             try
             {
-                return await context.FindAsync(typeof(TEntity), id);
+                throw new NotImplementedException();
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "GetById");
+                throw;
             }
         }
 
@@ -18,11 +21,12 @@
         {
             try
             {
-                Console.WriteLine("");
+                throw new NotImplementedException();
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "GetAll");
+                throw;
             }
         }
 
@@ -30,11 +34,12 @@
         {
             try
             {
-                Console.WriteLine("");
+                throw new NotImplementedException();
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Create");
+                throw;
             }
         }
 
@@ -42,11 +47,12 @@
         {
             try
             {
-                Console.WriteLine("");
+                throw new NotImplementedException();
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Update");
+                throw;
             }
         }
 
@@ -54,11 +60,12 @@
         {
             try
             {
-                Console.WriteLine("");
+                throw new NotImplementedException();
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Delete");
+                throw;
             }
         }
     }

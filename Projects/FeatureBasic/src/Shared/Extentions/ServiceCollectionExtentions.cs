@@ -6,7 +6,7 @@ namespace FeatureBasic.src.Shared.Extentions
     {
         public static void AddLibraries(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddAutoMapper(typeof(AutomapperProfile));
+            serviceCollection.AddAutoMapper(typeof(AutoMapperProfile));
         }
 
         public static void AddServices(this IServiceCollection serviceCollection)
