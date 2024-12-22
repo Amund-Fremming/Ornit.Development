@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\Dotnet\\FeatureBasic\\FeatureBasic.csproj": {}
+    "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureBasic\\FeatureBasic.csproj": {}
   },
   "projects": {
-    "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\Dotnet\\FeatureBasic\\FeatureBasic.csproj": {
+    "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureBasic\\FeatureBasic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\Dotnet\\FeatureBasic\\FeatureBasic.csproj",
+        "projectUniqueName": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureBasic\\FeatureBasic.csproj",
         "projectName": "FeatureBasic",
-        "projectPath": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\Dotnet\\FeatureBasic\\FeatureBasic.csproj",
+        "projectPath": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureBasic\\FeatureBasic.csproj",
         "packagesPath": "C:\\Users\\amund.fremming\\.nuget\\packages\\",
-        "outputPath": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\Dotnet\\FeatureBasic\\obj\\",
+        "outputPath": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureBasic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\amund.fremming\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -48,9 +48,25 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.2, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
