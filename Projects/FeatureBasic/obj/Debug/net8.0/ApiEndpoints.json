@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "FeatureBasic.src.Shared.Abstractions.EntityControllerBase\u00601[[FeatureBasic.src.Features.User.UserEntity, FeatureBasic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-    "Method": "Get",
+    "Method": "GetByID",
     "RelativePath": "api/User/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -13,6 +13,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FeatureBasic.src.Shared.Abstractions.EntityControllerBase\u00601[[FeatureBasic.src.Features.User.UserEntity, FeatureBasic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAll",
+    "RelativePath": "api/User/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   }
 ]

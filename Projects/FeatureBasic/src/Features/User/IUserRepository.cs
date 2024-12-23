@@ -2,7 +2,7 @@
 
 namespace FeatureBasic.src.Features.User
 {
-    public class UserController(IUserRepository repository) : EntityControllerBase<UserEntity>(repository)
+    public interface IUserRepository : IRepository<UserEntity>
     {
         // Add your specific methods here.
     }

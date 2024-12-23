@@ -1,4 +1,4 @@
-using FeatureBasic.src.Features.Data;
+using FeatureBasic.src.Shared.AppData;
 using FeatureBasic.src.Shared.Extentions;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +28,9 @@ services.AddServices();
 services.AddRepositories();
 
 var app = builder.Build();
+
+app.UseRouting();
+app.MapControllers();
 
 if (app.Environment.IsDevelopment())
 {

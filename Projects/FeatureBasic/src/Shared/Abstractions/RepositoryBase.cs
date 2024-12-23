@@ -1,14 +1,16 @@
-﻿using FeatureBasic.src.Features.Data;
+﻿using FeatureBasic.src.Shared.AppData;
+using Microsoft.EntityFrameworkCore;
 
 namespace FeatureBasic.src.Shared.Abstractions
 {
-    public abstract class RepositoryBase<TEntity, TClass>(ILogger<TClass> logger, AppDbContext context) : IRepository<TEntity> where TEntity : IIdentityEntity
+    public abstract class RepositoryBase<TEntity, TClass>(ILogger<TClass> logger, AppDbContext context) : IRepository<TEntity> where TEntity : class, IIdentityEntity
     {
-        public async Task<TEntity> GetByID(int id)
+        public async Task<TEntity?> GetByID(int id)
         {
             try
             {
-                throw new NotImplementedException();
+                return await context.Set<TEntity>()
+                    .FindAsync(id);
             }
             catch (Exception ex)
             {
@@ -17,11 +19,13 @@ namespace FeatureBasic.src.Shared.Abstractions
             }
         }
 
-        public Task<IEnumerable<TEntity>> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAll()
         {
             try
             {
-                throw new NotImplementedException();
+                return await context.Set<TEntity>()
+                    .AsNoTracking()
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
@@ -30,11 +34,13 @@ namespace FeatureBasic.src.Shared.Abstractions
             }
         }
 
-        public Task<int> Create(TEntity entity)
+        public async Task<int> Create(TEntity entity)
         {
             try
             {
-                throw new NotImplementedException();
+                await context.AddAsync(entity);
+                await context.SaveChangesAsync();
+                return entity.ID;
             }
             catch (Exception ex)
             {
@@ -43,29 +49,38 @@ namespace FeatureBasic.src.Shared.Abstractions
             }
         }
 
-        public Task<bool> Update(TEntity entity)
+        public async Task<bool> Update(TEntity entity)
         {
             try
             {
-                throw new NotImplementedException();
+                context.Update(entity);
+                await context.SaveChangesAsync();
+                return true;
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Update");
-                throw;
+                return false;
             }
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             try
             {
-                throw new NotImplementedException();
+                TEntity? entity = await GetByID(id);
+                if (entity == null)
+                {
+                    return false;
+                }
+                context.Remove(entity);
+                await context.SaveChangesAsync();
+                return true;
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Delete");
-                throw;
+                return false;
             }
         }
     }

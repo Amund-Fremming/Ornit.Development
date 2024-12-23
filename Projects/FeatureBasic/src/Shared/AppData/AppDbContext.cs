@@ -1,7 +1,7 @@
 ﻿using FeatureBasic.src.Features.User;
 using Microsoft.EntityFrameworkCore;
 
-namespace FeatureBasic.src.Features.Data
+namespace FeatureBasic.src.Shared.AppData
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {

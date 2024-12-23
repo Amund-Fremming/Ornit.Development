@@ -1,14 +1,14 @@
 ﻿namespace FeatureBasic.src.Shared.Abstractions
 {
-    public interface IRepository<TEntity> where TEntity : IIdentityEntity
+    public interface IRepository<T> where T : IIdentityEntity
     {
-        Task<TEntity> GetByID(int id);
+        Task<T?> GetByID(int id);
 
-        Task<IEnumerable<TEntity>> GetAll();
+        Task<IEnumerable<T>> GetAll();
 
-        Task<int> Create(TEntity entity);
+        Task<int> Create(T entity);
 
-        Task<bool> Update(TEntity entity);
+        Task<bool> Update(T entity);
 
         Task<bool> Delete(int id);
     }

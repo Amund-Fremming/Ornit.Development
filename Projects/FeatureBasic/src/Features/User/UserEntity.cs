@@ -9,7 +9,13 @@ namespace FeatureBasic.src.Features.User
         [Key]
         public int ID { get; set; }
 
-        public UserRole UserRole { get => this.UserRole; set => this.UserRole = UserRole.User; }
+        public UserRole UserRole
+        {
+            get => UserRole; set
+            {
+                UserRole = UserRole.User;
+            }
+        }
 
         public string Username { get; set; } = string.Empty;
 
