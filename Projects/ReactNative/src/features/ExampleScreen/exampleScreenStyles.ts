@@ -1,4 +1,7 @@
-import { moderateScale } from "@/src/shared/constants/dimensions";
+import {
+  moderateScale,
+  verticalScale,
+} from "@/src/shared/constants/dimensions";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -7,6 +10,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: "100%",
+    gap: verticalScale(25),
   },
   header: {
     fontFamily: "SpaceMono",

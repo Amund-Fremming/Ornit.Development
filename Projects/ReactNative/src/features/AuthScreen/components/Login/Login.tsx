@@ -1,17 +1,22 @@
 import { View, Text, Pressable, TextInput } from "react-native";
-
 import { styles } from "./loginStyles";
 import { Colors } from "@/src/shared/constants/Colors";
 import { useState } from "react";
+import * as SecureStore from "expo-secure-store";
+import { useAuthProvider } from "@/src/shared/providers/AuthProvider";
 
 interface ILogin {
   toggleView: () => void;
 }
 
 export default function Login(props: ILogin) {
+  const { setLoggedIn } = useAuthProvider();
+
   const handleLogin = () => {
     setUsername("");
     setPassword("");
+    SecureStore.setItem("token", "someTokenValue");
+    setLoggedIn(true);
   };
 
   const [username, setUsername] = useState<string>("");

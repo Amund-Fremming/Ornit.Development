@@ -3,7 +3,8 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
 import { Colors } from "@/src/shared/constants/Colors";
 import * as SecureStore from "expo-secure-store";
-import Auth from "@/src/features/Auth/Auth";
+import Auth from "@/src/features/AuthScreen/AuthScreen";
+import { useAuthProvider } from "@/src/shared/providers/AuthProvider";
 
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -13,15 +14,15 @@ function TabBarIcon(props: {
 }
 
 export default function TabLayout() {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
-
-  /* Remove this comment for a login wall.
-    - Still needs functionality for getting a token, and storing it on login
-*/
+  /**
+   * If you dont want login/authentication logic
+   * remove the code from this comment to the nect one.
+   */
+  const { loggedIn, setLoggedIn } = useAuthProvider();
 
   useEffect(() => {
     checkForToken();
-  }, []);
+  }, [loggedIn]);
 
   const checkForToken = async () => {
     const token = await SecureStore.getItemAsync("token");
@@ -33,6 +34,7 @@ export default function TabLayout() {
   if (!loggedIn) {
     return <Auth />;
   }
+  /* To here */
 
   return (
     <Tabs

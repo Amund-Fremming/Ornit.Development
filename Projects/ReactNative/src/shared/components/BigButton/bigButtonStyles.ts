@@ -8,7 +8,7 @@ import {
 export const styles = StyleSheet.create({
   container: {
     width: horizontalScale(200),
-    height: verticalScale(80),
+    height: verticalScale(60),
     justifyContent: "center",
     alignItems: "center",
   },
