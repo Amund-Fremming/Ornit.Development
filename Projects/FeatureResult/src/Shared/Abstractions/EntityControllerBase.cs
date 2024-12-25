@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
-using FeatureBasic.src.Features.User;
+using FeatureResult.src.Features.User;
 using Microsoft.AspNetCore.Mvc;
+using NucleusResults.Core;
 
-namespace FeatureBasic.src.Shared.Abstractions
+namespace FeatureResult.src.Shared.Abstractions
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -13,9 +14,9 @@ namespace FeatureBasic.src.Shared.Abstractions
         {
             try
             {
-                var user = await repository.GetByID(id);
-                var dto = mapper.Map<UserDto>(user);
-                return Ok(dto);
+                var result = await repository.GetByID(id);
+                return result.Resolve(suc => Ok(mapper.Map<UserDto>(result.Data)),
+                    err => BadRequest(result.Message));
             }
             catch (Exception)
             {
@@ -28,9 +29,9 @@ namespace FeatureBasic.src.Shared.Abstractions
         {
             try
             {
-                var users = await repository.GetAll();
-                var dtos = mapper.Map<List<UserDto>>(users);
-                return Ok(users);
+                var result = await repository.GetAll();
+                return result.Resolve(suc => Ok(mapper.Map<List<UserDto>>(result.Data)),
+                    err => BadRequest(result.Message));
             }
             catch (Exception)
             {
