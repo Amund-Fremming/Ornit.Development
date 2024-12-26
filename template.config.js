@@ -1,4 +1,4 @@
 module.exports = {
   placeholderName: "MyApp",
-  templateDir: "./src/projects/reactNative",
+  templateDir: "./Projects/ReactNative",
 };
