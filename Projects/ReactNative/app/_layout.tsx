@@ -1,5 +1,6 @@
 import { AuthProvider } from "@/src/shared/providers/AuthProvider";
-import { ModalProvider } from "@/src/shared/providers/ModalProvider";
+import { InfoModalProvider } from "@/src/shared/providers/InfoModalProvider";
+import { ActionModalProvider } from "@/src/shared/providers/ActionModalProvider";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -41,11 +42,13 @@ export default function RootLayout() {
 function RootLayoutNav() {
   return (
     <AuthProvider>
-      <ModalProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-      </ModalProvider>
+      <ActionModalProvider>
+        <InfoModalProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </InfoModalProvider>
+      </ActionModalProvider>
     </AuthProvider>
   );
 }

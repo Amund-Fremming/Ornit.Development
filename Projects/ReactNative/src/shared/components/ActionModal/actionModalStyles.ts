@@ -13,21 +13,15 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
   },
-  genericContainer: {
+  container: {
     justifyContent: "center",
     alignItems: "center",
     width: horizontalScale(350),
     height: verticalScale(220),
     borderWidth: moderateScale(2.5),
     gap: verticalScale(20),
-  },
-  messageContainer: {
     backgroundColor: Colors.White,
-    borderColor: Colors.Green,
-  },
-  errorContainer: {
-    backgroundColor: Colors.White,
-    borderColor: Colors.Red,
+    borderColor: Colors.Gray,
   },
   header: {
     fontFamily: "SpaceMono",
@@ -36,6 +30,10 @@ export const styles = StyleSheet.create({
   message: {
     fontFamily: "SpaceMono",
     fontSize: moderateScale(18),
+  },
+  buttonsWrapper: {
+    flexDirection: "row",
+    gap: horizontalScale(25),
   },
   button: {
     borderBottomWidth: moderateScale(2),
