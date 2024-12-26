@@ -1,5 +1,4 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
-import { Modal, Text, View, Button, StyleSheet } from "react-native";
 import InfoModal from "../components/InfoModal/InfoModal";
 
 interface IModalContext {
