@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FeatureResult.src.Features.User;
+using FeatureResult.src.Features.Example;
 using Microsoft.AspNetCore.Mvc;
 using NucleusResults.Core;
 
@@ -7,19 +7,20 @@ namespace FeatureResult.src.Shared.Abstractions
 {
     [ApiController]
     [Route("api/[controller]")]
-    public abstract class EntityControllerBase<T>(IRepository<T> repository, IMapper mapper) : ControllerBase where T : IIdentityEntity
+    public abstract class EntityControllerBase<T>(ILogger<EntityControllerBase<T>> logger, IRepository<T> repository, IMapper mapper) : ControllerBase where T : IIdentityEntity
     {
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByID(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
-                var result = await repository.GetByID(id);
-                return result.Resolve(suc => Ok(mapper.Map<UserDto>(result.Data)),
+                var result = await repository.GetById(id);
+                return result.Resolve(suc => Ok(mapper.Map<ExampleDto>(result.Data)),
                     err => BadRequest(result.Message));
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                logger.LogError(e, "GetBydId");
                 return StatusCode(500, "Internal server error.");
             }
         }
@@ -30,11 +31,12 @@ namespace FeatureResult.src.Shared.Abstractions
             try
             {
                 var result = await repository.GetAll();
-                return result.Resolve(suc => Ok(mapper.Map<List<UserDto>>(result.Data)),
+                return result.Resolve(suc => Ok(mapper.Map<List<ExampleDto>>(result.Data)),
                     err => BadRequest(result.Message));
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                logger.LogError(e, "GetAll");
                 return StatusCode(500, "Internal server error.");
             }
         }

@@ -6,7 +6,7 @@ namespace FeatureResult.src.Shared.Abstractions
 {
     public abstract class RepositoryBase<TEntity, TClass>(ILogger<TClass> logger, AppDbContext context) : IRepository<TEntity> where TEntity : class, IIdentityEntity
     {
-        public async Task<NucleusResult<TEntity>> GetByID(int id)
+        public async Task<Result<TEntity>> GetById(int id)
         {
             try
             {
@@ -17,16 +17,16 @@ namespace FeatureResult.src.Shared.Abstractions
                 {
                     return entity;
                 }
-                return new Error(new KeyNotFoundException(""), $"{typeof(TEntity)} with id {id}, does not exist.");
+                return new Error($"{typeof(TEntity)} with id {id}, does not exist.");
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "GetById");
-                return new Error(ex, ex.Message);
+                return new Error(ex.Message, ex);
             }
         }
 
-        public async Task<NucleusResult<IEnumerable<TEntity>>> GetAll()
+        public async Task<Result<IEnumerable<TEntity>>> GetAll()
         {
             try
             {
@@ -37,17 +37,17 @@ namespace FeatureResult.src.Shared.Abstractions
             catch (Exception ex)
             {
                 logger.LogError(ex, "GetAll");
-                return new Error(ex, ex.Message);
+                return new Error(ex.Message, ex);
             }
         }
 
-        public async Task<NucleusResult> Create(TEntity entity)
+        public async Task<Result> Create(TEntity entity)
         {
             try
             {
                 await context.AddAsync(entity);
                 await context.SaveChangesAsync();
-                return NucleusResult.Ok();
+                return Result.Ok();
             }
             catch (Exception ex)
             {
@@ -56,26 +56,26 @@ namespace FeatureResult.src.Shared.Abstractions
             }
         }
 
-        public async Task<NucleusResult> Update(TEntity entity)
+        public async Task<Result> Update(TEntity entity)
         {
             try
             {
                 context.Update(entity);
                 await context.SaveChangesAsync();
-                return NucleusResult.Ok();
+                return Result.Ok();
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Update");
-                return new Error(ex, ex.Message);
+                return new Error(ex.Message, ex);
             }
         }
 
-        public async Task<NucleusResult> Delete(int id)
+        public async Task<Result> Delete(int id)
         {
             try
             {
-                var result = await GetByID(id);
+                var result = await GetById(id);
                 if (result.IsError)
                 {
                     return result.Error;
@@ -83,12 +83,12 @@ namespace FeatureResult.src.Shared.Abstractions
                 var entity = result.Data;
                 context.Remove(entity);
                 await context.SaveChangesAsync();
-                return NucleusResult.Ok();
+                return Result.Ok();
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Delete");
-                return new Error(ex, ex.Message);
+                return new Error(ex.Message, ex);
             }
         }
     }

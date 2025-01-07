@@ -1,9 +1,10 @@
-﻿using FeatureResult.src.Features.User;
+﻿using FeatureResult.src.Features.Auth;
+using FeatureResult.src.Features.Example;
 using FeatureResult.src.Shared.Common;
 
-namespace FeatureResult.src.Shared.Extentions
+namespace FeatureResult.src.Shared.Extensions
 {
-    public static class ServiceCollectionExtentions
+    public static class ServiceCollectionExtensions
     {
         public static void AddLibraries(this IServiceCollection serviceCollection)
         {
@@ -12,11 +13,12 @@ namespace FeatureResult.src.Shared.Extentions
 
         public static void AddServices(this IServiceCollection serviceCollection)
         {
+            serviceCollection.AddScoped<ITokenService, TokenService>();
         }
 
         public static void AddRepositories(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<IUserRepository, UserRepository>();
+            serviceCollection.AddScoped<IExampleRepository, ExampleRepository>();
         }
     }
 }

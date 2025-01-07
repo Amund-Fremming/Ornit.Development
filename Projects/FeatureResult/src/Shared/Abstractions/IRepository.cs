@@ -4,14 +4,14 @@ namespace FeatureResult.src.Shared.Abstractions
 {
     public interface IRepository<T> where T : IIdentityEntity
     {
-        Task<NucleusResult<T>> GetByID(int id);
+        Task<Result<T>> GetById(int id);
 
-        Task<NucleusResult<IEnumerable<T>>> GetAll();
+        Task<Result<IEnumerable<T>>> GetAll();
 
-        Task<NucleusResult> Create(T entity);
+        Task<Result> Create(T entity);
 
-        Task<NucleusResult> Update(T entity);
+        Task<Result> Update(T entity);
 
-        Task<NucleusResult> Delete(int id);
+        Task<Result> Delete(int id);
     }
 }
