@@ -1,4 +1,4 @@
-﻿using FeatureResult.src.Features.Example;
+﻿using FeatureResult.src.Features.User;
 using FeatureResult.src.Shared.Common;
 
 namespace FeatureResult.src.Shared.Extensions
@@ -16,7 +16,7 @@ namespace FeatureResult.src.Shared.Extensions
 
         public static void AddRepositories(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<IExampleRepository, ExampleRepository>();
+            serviceCollection.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }

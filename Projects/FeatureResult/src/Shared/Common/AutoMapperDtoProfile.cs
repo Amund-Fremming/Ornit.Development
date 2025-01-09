@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FeatureResult.src.Features.Example;
+using FeatureResult.src.Features.User;
 
 namespace FeatureResult.src.Shared.Common
 {
@@ -7,7 +7,7 @@ namespace FeatureResult.src.Shared.Common
     {
         public AutoMapperDtoProfile()
         {
-            CreateMap<ExampleEntity, ExampleDto>();
+            CreateMap<UserEntity, UserDto>();
         }
     }
 }

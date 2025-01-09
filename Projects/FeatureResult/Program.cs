@@ -20,7 +20,7 @@ builder.ConfigureJwtValidation();
 services.AddDbContext<AppDbContext>(o =>
 {
     var connectionString = builder.Configuration.GetConnectionString("Database");
-    if (String.IsNullOrEmpty(connectionString))
+    if (string.IsNullOrEmpty(connectionString))
     {
         o.UseInMemoryDatabase("InMemoryDb");
     }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FeatureResult.src.Features.Example;
+using FeatureResult.src.Features.User;
 using Microsoft.AspNetCore.Mvc;
 using NucleusResults.Core;
 
@@ -15,7 +15,7 @@ namespace FeatureResult.src.Shared.Abstractions
             try
             {
                 var result = await repository.GetById(id);
-                return result.Resolve(suc => Ok(mapper.Map<ExampleDto>(result.Data)),
+                return result.Resolve(suc => Ok(mapper.Map<UserDto>(result.Data)),
                     err => BadRequest(result.Message));
             }
             catch (Exception e)
@@ -31,7 +31,7 @@ namespace FeatureResult.src.Shared.Abstractions
             try
             {
                 var result = await repository.GetAll();
-                return result.Resolve(suc => Ok(mapper.Map<List<ExampleDto>>(result.Data)),
+                return result.Resolve(suc => Ok(mapper.Map<List<UserDto>>(result.Data)),
                     err => BadRequest(result.Message));
             }
             catch (Exception e)
