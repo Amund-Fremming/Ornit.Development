@@ -15,7 +15,7 @@ services.AddRepositories();
 services.AddServices();
 
 services.ConfigureSwaggerAuthentication();
-builder.ConfigureJwt();
+builder.ConfigureJwtValidation();
 
 services.AddDbContext<AppDbContext>(o =>
 {
@@ -30,29 +30,11 @@ services.AddDbContext<AppDbContext>(o =>
     }
 });
 
-/*
-services.AddAuthentication(o =>
-{
-    o.DefaultScheme = IdentityConstants.ApplicationScheme;
-    o.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
-    o.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
-})
-.AddGoogle(o =>
-{
-    o.ClientId = builder.Configuration["Authentication:Google:ClientId"] ?? throw new KeyNotFoundException("Missing Google client id.");
-    o.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"] ?? throw new KeyNotFoundException("Missing Google client secret.");
-})
-.AddFacebook(o =>
-{
-    o.ClientId = builder.Configuration["Authentication:Facebook:AppId"] ?? throw new KeyNotFoundException("Missing Facebook app id.");
-    o.ClientSecret = builder.Configuration["Authentication:Facebook:AppSecret"] ?? throw new KeyNotFoundException("Missing Facebook app secret.");
-});
-*/
-
 var app = builder.Build();
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 

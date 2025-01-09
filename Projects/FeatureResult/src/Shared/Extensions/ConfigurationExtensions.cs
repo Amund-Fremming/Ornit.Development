@@ -1,39 +1,27 @@
-﻿using FeatureResult.src.Features.Auth;
-using FeatureResult.src.Shared.AppData;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
 
 namespace FeatureResult.src.Shared.Extensions
 {
     public static class ConfigurationExtensions
     {
-        public static void ConfigureJwt(this WebApplicationBuilder builder)
+        public static void ConfigureJwtValidation(this WebApplicationBuilder builder)
         {
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<AppDbContext>()
-                .AddDefaultTokenProviders();
-
-            builder.Services.AddAuthentication(options =>
-            {
-                // Overrides default authentication scheme for `AddIdentity` (cookie based).
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
+                    var auth0Issuer = builder.Configuration["Auth0:Issuer"] ?? throw new KeyNotFoundException("Auth0 Issuer not present.");
+                    var auth0Audience = builder.Configuration["Auth0:Audience"] ?? throw new KeyNotFoundException("Auth0 Audience not present.");
+
+                    options.Authority = auth0Issuer;
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = builder.Configuration["Jwt:Issuer"] ?? throw new KeyNotFoundException("Jwt Issuer not present.(Program)"),
-                        ValidAudience = builder.Configuration["Jwt:Audience"] ?? throw new KeyNotFoundException("Jwt Audience not present."),
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? throw new KeyNotFoundException("Jwt key not present."))),
+                        ValidIssuer = auth0Issuer,
+                        ValidAudience = auth0Audience,
                         ClockSkew = TimeSpan.Zero
                     };
 
