@@ -5,7 +5,12 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Development", "Development", "{18BFC218-52AE-49E5-AEB3-568825C8C1A0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FeatureResult", "Projects\FeatureResult\FeatureResult.csproj", "{0E51E8DD-D52C-443C-B29B-F2EA8CFE5513}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ornit.Backend", "Projects\FeatureResult\Ornit.Backend.csproj", "{0E51E8DD-D52C-443C-B29B-F2EA8CFE5513}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0FF4F727-EB0A-4D94-83BB-8681D8BD2EA6}"
+	ProjectSection(SolutionItems) = preProject
+		Tasklist.md = Tasklist.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
