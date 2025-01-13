@@ -1,6 +1,4 @@
-﻿namespace NucleusResults.Core
+﻿namespace Ornit.Backend.src.Shared.ResultPattern
 {
-    internal class ResultException(string message) : Exception(message)
-    {
-    }
+    internal class ResultException(string message) : Exception(message);
 }

@@ -1,8 +1,8 @@
-﻿using FeatureResult.src.Shared.AppData;
-using Microsoft.EntityFrameworkCore;
-using NucleusResults.Core;
+﻿using Microsoft.EntityFrameworkCore;
+using Ornit.Backend.src.Shared.AppData;
+using Ornit.Backend.src.Shared.ResultPattern;
 
-namespace FeatureResult.src.Shared.Abstractions
+namespace Ornit.Backend.src.Shared.Abstractions
 {
     public abstract class RepositoryBase<TEntity, TClass>(ILogger<TClass> logger, AppDbContext context) : IRepository<TEntity> where TEntity : class, IIdentityEntity
     {

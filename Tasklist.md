@@ -4,7 +4,6 @@
 
 ### BE
 
-- Refactor AuthController to a service
 - Register user in system db with new db primary key, and auth0 id
 - Auth0 google and facebook login ??
 
@@ -14,8 +13,8 @@
 
 - Use Validator.ThrowIfNull to catch errors early ??
 - Use http context to get services so bases dont need to get all required services in constructor
+- Pagination ??
 
 ### FE
 
-- Provider for tab navigation
 - Profile screen

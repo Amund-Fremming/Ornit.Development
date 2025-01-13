@@ -1,6 +1,6 @@
-using FeatureResult.src.Shared.AppData;
-using FeatureResult.src.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Ornit.Backend.src.Shared.AppData;
+using Ornit.Backend.src.Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;

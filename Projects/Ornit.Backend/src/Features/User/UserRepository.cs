@@ -1,7 +1,7 @@
-﻿using FeatureResult.src.Shared.Abstractions;
-using FeatureResult.src.Shared.AppData;
+﻿using Ornit.Backend.src.Shared.Abstractions;
+using Ornit.Backend.src.Shared.AppData;
 
-namespace FeatureResult.src.Features.User
+namespace Ornit.Backend.src.Features.User
 {
     public class UserRepository(ILogger<UserRepository> logger, AppDbContext context) : RepositoryBase<UserEntity, UserRepository>(logger, context), IUserRepository
     {

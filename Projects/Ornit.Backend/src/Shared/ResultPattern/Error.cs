@@ -1,4 +1,4 @@
-﻿namespace NucleusResults.Core
+﻿namespace Ornit.Backend.src.Shared.ResultPattern
 {
     /// <summary>
     /// Used for expressing a error result.

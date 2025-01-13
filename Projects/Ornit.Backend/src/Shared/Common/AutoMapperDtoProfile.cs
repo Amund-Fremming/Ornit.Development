@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using FeatureResult.src.Features.User;
+using Ornit.Backend.src.Features.User;
 
-namespace FeatureResult.src.Shared.Common
+namespace Ornit.Backend.src.Shared.Common
 {
     public class AutoMapperDtoProfile : Profile
     {

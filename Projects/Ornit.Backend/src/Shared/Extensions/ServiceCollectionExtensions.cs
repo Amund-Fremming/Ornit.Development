@@ -1,7 +1,8 @@
-﻿using FeatureResult.src.Features.User;
-using FeatureResult.src.Shared.Common;
+﻿using Ornit.Backend.src.Features.Auth0;
+using Ornit.Backend.src.Features.User;
+using Ornit.Backend.src.Shared.Common;
 
-namespace FeatureResult.src.Shared.Extensions
+namespace Ornit.Backend.src.Shared.Extensions
 {
     public static class ServiceCollectionExtensions
     {
@@ -17,6 +18,7 @@ namespace FeatureResult.src.Shared.Extensions
         public static void AddRepositories(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddScoped<IUserRepository, UserRepository>();
+            serviceCollection.AddScoped<IAuthService, AuthService>();
         }
     }
 }

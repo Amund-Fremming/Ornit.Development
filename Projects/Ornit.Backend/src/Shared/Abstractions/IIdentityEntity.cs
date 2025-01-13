@@ -1,4 +1,4 @@
-﻿namespace FeatureResult.src.Shared.Abstractions
+﻿namespace Ornit.Backend.src.Shared.Abstractions
 {
     public interface IIdentityEntity
     {

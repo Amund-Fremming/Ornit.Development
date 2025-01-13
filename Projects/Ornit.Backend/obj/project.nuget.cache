@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8F3BT2/5aXI=",
+  "dgSpecHash": "T2mHnW3pZrU=",
   "success": true,
-  "projectFilePath": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\Ornit.Backend.csproj",
+  "projectFilePath": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\Ornit.Backend\\Ornit.Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\amund.fremming\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\amund.fremming\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\8.0.0\\microsoft.aspnetcore.authentication.facebook.8.0.0.nupkg.sha512",

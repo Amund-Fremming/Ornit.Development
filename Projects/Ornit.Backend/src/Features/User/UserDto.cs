@@ -1,4 +1,4 @@
-﻿namespace FeatureResult.src.Features.User
+﻿namespace Ornit.Backend.src.Features.User
 {
     public class UserDto
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace NucleusResults.Core
+namespace Ornit.Backend.src.Shared.ResultPattern
 {
     public static class ResultExtention
     {

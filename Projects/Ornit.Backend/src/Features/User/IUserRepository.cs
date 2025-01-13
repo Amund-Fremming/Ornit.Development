@@ -1,6 +1,6 @@
-﻿using FeatureResult.src.Shared.Abstractions;
+﻿using Ornit.Backend.src.Shared.Abstractions;
 
-namespace FeatureResult.src.Features.User
+namespace Ornit.Backend.src.Features.User
 {
     public interface IUserRepository : IRepository<UserEntity>
     {

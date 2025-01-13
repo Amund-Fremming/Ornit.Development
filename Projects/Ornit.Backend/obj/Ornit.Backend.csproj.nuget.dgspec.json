@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\Ornit.Backend.csproj": {}
+    "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\Ornit.Backend\\Ornit.Backend.csproj": {}
   },
   "projects": {
-    "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\Ornit.Backend.csproj": {
+    "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\Ornit.Backend\\Ornit.Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\Ornit.Backend.csproj",
+        "projectUniqueName": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\Ornit.Backend\\Ornit.Backend.csproj",
         "projectName": "Ornit.Backend",
-        "projectPath": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\Ornit.Backend.csproj",
+        "projectPath": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\Ornit.Backend\\Ornit.Backend.csproj",
         "packagesPath": "C:\\Users\\amund.fremming\\.nuget\\packages\\",
-        "outputPath": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\obj\\",
+        "outputPath": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\Ornit.Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\amund.fremming\\AppData\\Roaming\\NuGet\\NuGet.Config",

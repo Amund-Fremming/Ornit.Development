@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace FeatureResult.src.Shared.Common
+namespace Ornit.Backend.src.Shared.Common
 {
     public static class TokenExtractor
     {

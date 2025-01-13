@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using FeatureResult.src.Shared.Abstractions;
+using Ornit.Backend.src.Shared.Abstractions;
 
-namespace FeatureResult.src.Features.User
+namespace Ornit.Backend.src.Features.User
 {
     public class UserController(ILogger<UserController> logger, IUserRepository repository, IMapper mapper) : EntityControllerBase<UserEntity>(logger, repository, mapper)
     {

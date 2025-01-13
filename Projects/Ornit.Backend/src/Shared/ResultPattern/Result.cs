@@ -1,4 +1,4 @@
-﻿namespace NucleusResults.Core
+﻿namespace Ornit.Backend.src.Shared.ResultPattern
 {
     /// <summary>
     /// Represents the result of an operation, encapsulating success or failure state,

@@ -2,7 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
-namespace FeatureResult.src.Shared.Extensions
+namespace Ornit.Backend.src.Shared.Extensions
 {
     public static class ConfigurationExtensions
     {

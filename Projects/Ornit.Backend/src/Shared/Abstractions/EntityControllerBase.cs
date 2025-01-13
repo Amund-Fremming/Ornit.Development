@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using FeatureResult.src.Features.User;
 using Microsoft.AspNetCore.Mvc;
-using NucleusResults.Core;
+using Ornit.Backend.src.Features.User;
+using Ornit.Backend.src.Shared.ResultPattern;
 
-namespace FeatureResult.src.Shared.Abstractions
+namespace Ornit.Backend.src.Shared.Abstractions
 {
     [ApiController]
     [Route("api/[controller]")]

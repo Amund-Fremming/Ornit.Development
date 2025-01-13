@@ -1,7 +1,7 @@
-﻿using FeatureResult.src.Shared.Abstractions;
+﻿using Ornit.Backend.src.Shared.Abstractions;
 using System.ComponentModel.DataAnnotations;
 
-namespace FeatureResult.src.Features.User
+namespace Ornit.Backend.src.Features.User
 {
     public class UserEntity : IIdentityEntity
     {

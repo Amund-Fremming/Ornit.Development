@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace FeatureResult.src.Features.Auth
+namespace Ornit.Backend.src.Features.Auth0
 {
     public record ServerRegistrationResponse
     {
