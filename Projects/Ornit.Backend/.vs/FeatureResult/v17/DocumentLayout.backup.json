@@ -1,0 +1,317 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\features\\user\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\features\\user\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\features\\user\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\features\\user\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\features\\user\\userentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\features\\user\\userentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\features\\user\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\features\\user\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\featureresult.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:featureresult.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\shared\\abstractions\\entitycontrollerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\shared\\abstractions\\entitycontrollerbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\shared\\common\\automapperdtoprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\shared\\common\\automapperdtoprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\shared\\abstractions\\repositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\shared\\abstractions\\repositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\shared\\abstractions\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\shared\\abstractions\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\shared\\abstractions\\iidentityentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\shared\\abstractions\\iidentityentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\shared\\models\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\shared\\models\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\shared\\models\\pagination.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\shared\\models\\pagination.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\shared\\extentions\\servicecollectionextentions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\shared\\extentions\\servicecollectionextentions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\shared\\appdata\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\shared\\appdata\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\src\\features\\user\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:src\\features\\user\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|c:\\code\\personalsandbox\\ornit.development\\projects\\featureresult\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FEB8F7B7-D517-44EC-921F-308B6FAE40C2}|FeatureResult.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FeatureResult",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\FeatureResult.csproj",
+              "RelativeDocumentMoniker": "FeatureResult.csproj",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\FeatureResult.csproj",
+              "RelativeToolTip": "FeatureResult.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-12-24T18:09:15.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Features\\User\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "src\\Features\\User\\IUserRepository.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Features\\User\\IUserRepository.cs",
+              "RelativeToolTip": "src\\Features\\User\\IUserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:09:26.103Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserEntity.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Features\\User\\UserEntity.cs",
+              "RelativeDocumentMoniker": "src\\Features\\User\\UserEntity.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Features\\User\\UserEntity.cs",
+              "RelativeToolTip": "src\\Features\\User\\UserEntity.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAgwAYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:09:42.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Features\\User\\UserController.cs",
+              "RelativeDocumentMoniker": "src\\Features\\User\\UserController.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Features\\User\\UserController.cs",
+              "RelativeToolTip": "src\\Features\\User\\UserController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAACAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:09:34.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EntityControllerBase.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Abstractions\\EntityControllerBase.cs",
+              "RelativeDocumentMoniker": "src\\Shared\\Abstractions\\EntityControllerBase.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Abstractions\\EntityControllerBase.cs",
+              "RelativeToolTip": "src\\Shared\\Abstractions\\EntityControllerBase.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwBQAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:09:55.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Features\\User\\UserRepository.cs",
+              "RelativeDocumentMoniker": "src\\Features\\User\\UserRepository.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Features\\User\\UserRepository.cs",
+              "RelativeToolTip": "src\\Features\\User\\UserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:09:48.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AutoMapperDtoProfile.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Common\\AutoMapperDtoProfile.cs",
+              "RelativeDocumentMoniker": "src\\Shared\\Common\\AutoMapperDtoProfile.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Common\\AutoMapperDtoProfile.cs",
+              "RelativeToolTip": "src\\Shared\\Common\\AutoMapperDtoProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:10:35.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RepositoryBase.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Abstractions\\RepositoryBase.cs",
+              "RelativeDocumentMoniker": "src\\Shared\\Abstractions\\RepositoryBase.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Abstractions\\RepositoryBase.cs",
+              "RelativeToolTip": "src\\Shared\\Abstractions\\RepositoryBase.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAYwEUAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:10:20.854Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Abstractions\\IRepository.cs",
+              "RelativeDocumentMoniker": "src\\Shared\\Abstractions\\IRepository.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Abstractions\\IRepository.cs",
+              "RelativeToolTip": "src\\Shared\\Abstractions\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:10:15.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IIdentityEntity.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Abstractions\\IIdentityEntity.cs",
+              "RelativeDocumentMoniker": "src\\Shared\\Abstractions\\IIdentityEntity.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Abstractions\\IIdentityEntity.cs",
+              "RelativeToolTip": "src\\Shared\\Abstractions\\IIdentityEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:10:02.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserRole.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Models\\UserRole.cs",
+              "RelativeDocumentMoniker": "src\\Shared\\Models\\UserRole.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Models\\UserRole.cs",
+              "RelativeToolTip": "src\\Shared\\Models\\UserRole.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:11:11.613Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Pagination.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Models\\Pagination.cs",
+              "RelativeDocumentMoniker": "src\\Shared\\Models\\Pagination.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Models\\Pagination.cs",
+              "RelativeToolTip": "src\\Shared\\Models\\Pagination.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:11:03.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ServiceCollectionExtentions.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Extentions\\ServiceCollectionExtentions.cs",
+              "RelativeDocumentMoniker": "src\\Shared\\Extentions\\ServiceCollectionExtentions.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\Extentions\\ServiceCollectionExtentions.cs",
+              "RelativeToolTip": "src\\Shared\\Extentions\\ServiceCollectionExtentions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:10:52.704Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\AppData\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "src\\Shared\\AppData\\AppDbContext.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Shared\\AppData\\AppDbContext.cs",
+              "RelativeToolTip": "src\\Shared\\AppData\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:10:28.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:09:03.855Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Features\\User\\UserDto.cs",
+              "RelativeDocumentMoniker": "src\\Features\\User\\UserDto.cs",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\src\\Features\\User\\UserDto.cs",
+              "RelativeToolTip": "src\\Features\\User\\UserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-24T18:09:38.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Code\\PersonalSandbox\\Ornit.Development\\Projects\\FeatureResult\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-24T18:09:10.585Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
