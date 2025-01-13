@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ornit.Backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8d68402b67c5b703671aa9f14402ccfa4fb578d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f7937a41e1656c15aaad318ba6723b9add5ff610")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ornit.Backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ornit.Backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

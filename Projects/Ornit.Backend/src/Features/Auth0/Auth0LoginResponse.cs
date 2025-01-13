@@ -2,7 +2,7 @@
 
 namespace Ornit.Backend.src.Features.Auth0
 {
-    public record ServerRegistrationResponse
+    public record Auth0LoginResponse
     {
         [JsonPropertyName("access_token")]
         public string? AccessToken { get; init; }

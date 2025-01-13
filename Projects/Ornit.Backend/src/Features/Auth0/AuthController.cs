@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Ornit.Backend.src.Features.User;
 using Ornit.Backend.src.Shared.Common;
 using Ornit.Backend.src.Shared.ResultPattern;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Ornit.Backend.src.Features.Auth0
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthController(ILogger<AuthController> logger, IConfiguration _configuration, IAuthService _authService) : ControllerBase
+    public class AuthController(ILogger<AuthController> logger, IConfiguration _configuration, IAuthService _authService, IUserRepository _userRepository) : ControllerBase
     {
         [HttpPost("refresh-token")]
         [AllowAnonymous]
@@ -28,15 +29,29 @@ namespace Ornit.Backend.src.Features.Auth0
             }
         }
 
+        // Summary:
+        //     This endpoint creates a new user in auth0 database for authentication,
+        //     and stores in this servers database for handling relations internally.
+        //
+        // Remarks:
+        //     Use the user objects Id, not the Auth0 id when creating relations.
         [HttpPost("register")]
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegistrationRequest request)
         {
             try
             {
-                // TODO, register user entity in my db!!
                 var result = await _authService.Register(request);
-                return result.Resolve(suc => Ok(suc.Data),
+                if (result.IsError)
+                {
+                    return BadRequest(result.Message);
+                }
+
+                var auth0Response = result.Data;
+                var userEntity = new UserEntity(auth0Response.Id, auth0Response.Email);
+                var userResult = await _userRepository.Create(userEntity);
+
+                return userResult.Resolve(suc => Ok("User registered!"),
                     err => BadRequest(err.Message));
             }
             catch (Exception e)
@@ -87,7 +102,7 @@ namespace Ornit.Backend.src.Features.Auth0
                 }
 
                 var rawServerResponse = await response.Content.ReadAsStringAsync();
-                var serverResponse = JsonSerializer.Deserialize<ServerRegistrationResponse>(rawServerResponse);
+                var serverResponse = JsonSerializer.Deserialize<Auth0LoginResponse>(rawServerResponse);
                 return Ok(serverResponse);
             }
             catch (Exception e)

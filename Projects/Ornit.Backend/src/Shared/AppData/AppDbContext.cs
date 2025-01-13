@@ -5,7 +5,7 @@ namespace Ornit.Backend.src.Shared.AppData
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public DbSet<UserEntity> Examples { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

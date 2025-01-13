@@ -14,5 +14,11 @@ namespace Ornit.Backend.src.Features.User
 
         public UserEntity()
         { }
+
+        public UserEntity(string auth0Id, string email)
+        {
+            Auth0Id = auth0Id;
+            this.Email = email;
+        }
     }
 }

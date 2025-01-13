@@ -34,7 +34,7 @@ namespace Ornit.Backend.src.Features.Auth0
             return responseBody;
         }
 
-        public async Task<Result<string>> Register(RegistrationRequest request)
+        public async Task<Result<Auth0RegistrationResponse>> Register(RegistrationRequest request)
         {
             var auth0Domain = _configuration["Auth0:Issuer"] ?? throw new ArgumentNullException("Auth0 issuer is null");
             var client_id = _configuration["Auth0:ClientId"] ?? throw new ArgumentNullException("Auth0 client id is null");
@@ -53,12 +53,18 @@ namespace Ornit.Backend.src.Features.Auth0
 
             if (!response.IsSuccessStatusCode)
             {
-                var errorResponse = await response.Content.ReadAsStringAsync();
-                return new Error($"Error registering user: {errorResponse}");
+                // var errorResponse = await response.Content.ReadAsStringAsync();
+                return new Error($"Error registering user.");
             }
 
             var responseBody = await response.Content.ReadAsStringAsync();
-            return responseBody;
+            var auth0Response = JsonSerializer.Deserialize<Auth0RegistrationResponse>(responseBody, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            if (auth0Response == null)
+            {
+                return new Error("Error deserializing registration response from auth0");
+            }
+
+            return auth0Response;
         }
     }
 }

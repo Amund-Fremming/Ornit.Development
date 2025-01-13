@@ -6,6 +6,6 @@ namespace Ornit.Backend.src.Features.Auth0
     {
         Task<Result<string>> RefreshAccessToken(RefreshTokenRequest request);
 
-        Task<Result<string>> Register(RegistrationRequest request);
+        Task<Result<Auth0RegistrationResponse>> Register(RegistrationRequest request);
     }
 }
