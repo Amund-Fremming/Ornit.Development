@@ -32,6 +32,7 @@ services.AddDbContext<AppDbContext>(o =>
 
 var app = builder.Build();
 
+app.MapOpenApi();
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthentication();
