@@ -41,8 +41,13 @@ namespace Ornit.Backend.src.Shared.Extensions
                 });
         }
 
-        public static void ConfigureSSO(this IServiceCollection serviceCollection)
+        public static void ConfigureNamedHttpClients(this WebApplicationBuilder builder)
         {
+            builder.Services.AddHttpClient("auth0", (client) =>
+            {
+                var url = builder.Configuration["Auth0:Issuer"] ?? throw new KeyNotFoundException("Auth0 issuer is null");
+                client.BaseAddress = new Uri(url);
+            });
         }
 
         public static void ConfigureSwaggerAuthentication(this IServiceCollection serviceCollection)

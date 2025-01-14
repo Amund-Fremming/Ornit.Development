@@ -12,7 +12,7 @@
         /// <summary>
         /// Indicates if the operation failed or not.
         /// </summary>
-        public bool IsError => Error is not null && Error.Exception is not null;
+        public bool IsError => Error is not null && Error.Message is not null;
 
         /// <summary>
         /// Used for getting the error message.

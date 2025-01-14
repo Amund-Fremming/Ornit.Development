@@ -2,7 +2,7 @@
 
 namespace Ornit.Backend.src.Features.Auth0
 {
-    public record Auth0RegistrationResponse
+    public record Auth0RegisterResponse
     {
         [JsonPropertyName("_id")]
         public string Id { get; set; } = string.Empty;

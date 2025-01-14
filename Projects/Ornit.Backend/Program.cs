@@ -16,6 +16,7 @@ services.AddServices();
 
 services.ConfigureSwaggerAuthentication();
 builder.ConfigureJwtValidation();
+builder.ConfigureNamedHttpClients();
 
 services.AddDbContext<AppDbContext>(o =>
 {

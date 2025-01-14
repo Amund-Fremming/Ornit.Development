@@ -1,5 +1,10 @@
 # Auth0 Setup guide
 
+## Info
+After testing the implementation only registration should happen via the backend,
+getting new access tokens with refresh token and logging in should be done via the frontend
+directly to Auth0 servers. Delete all other bolilerplate methods.
+
 ## Steps
 1. Navigate to Auth0 Dashboard
 2. Create a new Api under Application > APIs > Create API
@@ -14,3 +19,4 @@
 }
 ```
 5. Add a default directory to "Username-Password-Authentication"  ___ under Settings > General > Default Directory
+

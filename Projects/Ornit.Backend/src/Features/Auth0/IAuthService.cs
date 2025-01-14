@@ -4,8 +4,11 @@ namespace Ornit.Backend.src.Features.Auth0
 {
     public interface IAuthService
     {
-        Task<Result<string>> RefreshAccessToken(RefreshTokenRequest request);
+        // Remove after testing
+        Task<Result<string>> RefreshAccessToken(string refreshToken);
 
-        Task<Result<Auth0RegistrationResponse>> Register(RegistrationRequest request);
+        Task<Result<Auth0RegisterResponse>> Register(AuthRequest request);
+
+        Task<Result<Auth0LoginResponse>> Login(AuthRequest request);
     }
 }
