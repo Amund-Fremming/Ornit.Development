@@ -9,7 +9,6 @@ namespace Ornit.Backend.src.Shared.Extensions
         public static void AddLibraries(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddAutoMapper(typeof(AutoMapperDtoProfile));
-            serviceCollection.AddOpenApi();
         }
 
         public static void AddServices(this IServiceCollection serviceCollection)
