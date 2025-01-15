@@ -4,8 +4,8 @@
 
 ### BE
 
-- Bytt ArgumentNullException til InvalidOperationException
-
+- Auth attributes on base controllers
+- Setup Cloudflare R2 from dashboard
 - Test ImageProcessorClient
 - ImageProcessorClient README
 
