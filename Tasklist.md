@@ -4,7 +4,8 @@
 
 ### BE
 
-- Auth attributes on base controllers
+- Autmapper bug!!
+- Chnage base classes to use HttpContext
 - Setup Cloudflare R2 from dashboard
 - Test ImageProcessorClient
 - ImageProcessorClient README
@@ -22,4 +23,3 @@
 - Pagination ??
 - Auth0 google and facebook login
 - Use Validator.ThrowIfNull to catch errors early ??
-- Use http context to get services so bases dont need to get all required services in constructor

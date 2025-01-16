@@ -18,5 +18,5 @@ directly to Auth0 servers. Delete all other bolilerplate methods.
     "ClientSecret": "your_client-secret>"
 }
 ```
-5. Add a default directory to "Username-Password-Authentication"  ___ under Settings > General > Default Directory
+5. Add a default directory to "Username-Password-Authentication" under Settings > General > Default Directory
 

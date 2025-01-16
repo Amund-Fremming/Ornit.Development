@@ -2,7 +2,10 @@
 
 namespace Ornit.Backend.src.Shared.Common
 {
-    public interface IImageProcessorClient
+    /// <summary>
+    /// Uploads images to Cloudflare R2
+    /// </summary>
+    public interface IImageHandler
     {
         Task<Result<string>> Upload(MemoryStream stream, string contentType);
 

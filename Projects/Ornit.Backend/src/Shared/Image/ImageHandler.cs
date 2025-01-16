@@ -7,13 +7,13 @@ using SixLabors.ImageSharp.Formats.Webp;
 
 namespace Ornit.Backend.src.Shared.Common
 {
-    public class ImageProcessorClient : IImageProcessorClient
+    public class ImageHandler : IImageHandler
     {
         public readonly IAmazonS3 _s3Client;
         public readonly IConfiguration _configuration;
-        public readonly ILogger<ImageProcessorClient> _logger;
+        public readonly ILogger<ImageHandler> _logger;
 
-        public ImageProcessorClient(IConfiguration configuration, ILogger<ImageProcessorClient> logger)
+        public ImageHandler(IConfiguration configuration, ILogger<ImageHandler> logger)
         {
             _configuration = configuration;
             _logger = logger;

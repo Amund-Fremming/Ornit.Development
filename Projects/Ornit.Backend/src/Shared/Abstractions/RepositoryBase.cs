@@ -4,20 +4,20 @@ using Ornit.Backend.src.Shared.ResultPattern;
 
 namespace Ornit.Backend.src.Shared.Abstractions
 {
-    public abstract class RepositoryBase<TEntity, TClass>(ILogger<TClass> logger, AppDbContext context) : IRepository<TEntity> where TEntity : class, IIdentityEntity
+    public abstract class RepositoryBase<T>(ILogger<RepositoryBase<T>> logger, AppDbContext context) : IRepository<T> where T : class, IIdentityEntity
     {
-        public async Task<Result<TEntity>> GetById(int id)
+        public async Task<Result<T>> GetById(int id)
         {
             try
             {
-                var entity = await context.Set<TEntity>()
+                var entity = await context.Set<T>()
                     .FindAsync(id);
 
                 if (entity != null)
                 {
                     return entity;
                 }
-                return new Error($"{typeof(TEntity)} with id {id}, does not exist.");
+                return new Error($"{typeof(T)} with id {id}, does not exist.");
             }
             catch (Exception ex)
             {
@@ -26,11 +26,11 @@ namespace Ornit.Backend.src.Shared.Abstractions
             }
         }
 
-        public async Task<Result<IEnumerable<TEntity>>> GetAll()
+        public async Task<Result<IEnumerable<T>>> GetAll()
         {
             try
             {
-                return await context.Set<TEntity>()
+                return await context.Set<T>()
                     .AsNoTracking()
                     .ToListAsync();
             }
@@ -41,7 +41,7 @@ namespace Ornit.Backend.src.Shared.Abstractions
             }
         }
 
-        public async Task<Result> Create(TEntity entity)
+        public async Task<Result> Create(T entity)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace Ornit.Backend.src.Shared.Abstractions
             }
         }
 
-        public async Task<Result> Update(TEntity entity)
+        public async Task<Result> Update(T entity)
         {
             try
             {

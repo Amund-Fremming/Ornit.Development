@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ornit.Backend.src.Features.User;
 using Ornit.Backend.src.Shared.ResultPattern;
@@ -9,13 +10,14 @@ namespace Ornit.Backend.src.Shared.Abstractions
     [Route("api/[controller]")]
     public abstract class EntityControllerBase<T>(ILogger<EntityControllerBase<T>> logger, IRepository<T> repository, IMapper mapper) : ControllerBase where T : IIdentityEntity
     {
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             try
             {
                 var result = await repository.GetById(id);
-                return result.Resolve(suc => Ok(mapper.Map<UserDto>(result.Data)),
+                return result.Resolve(suc => Ok(result.Data),
                     err => BadRequest(result.Message));
             }
             catch (Exception e)
@@ -25,6 +27,7 @@ namespace Ornit.Backend.src.Shared.Abstractions
             }
         }
 
+        [Authorize]
         [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Ornit.Backend.src.Features.User;
 
-namespace Ornit.Backend.src.Shared.Common
+namespace Ornit.Backend.src.Shared.Mappings
 {
-    public class AutoMapperDtoProfile : Profile
+    public class EntityToDtoProfile : Profile
     {
-        public AutoMapperDtoProfile()
+        public EntityToDtoProfile()
         {
             CreateMap<UserEntity, UserDto>();
         }
