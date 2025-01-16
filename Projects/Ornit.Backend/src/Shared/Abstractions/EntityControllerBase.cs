@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Ornit.Backend.src.Features.User;
 using Ornit.Backend.src.Shared.ResultPattern;
 
 namespace Ornit.Backend.src.Shared.Abstractions
@@ -34,7 +33,7 @@ namespace Ornit.Backend.src.Shared.Abstractions
             try
             {
                 var result = await repository.GetAll();
-                return result.Resolve(suc => Ok(mapper.Map<List<UserDto>>(result.Data)),
+                return result.Resolve(suc => Ok(suc.Data),
                     err => BadRequest(result.Message));
             }
             catch (Exception e)
