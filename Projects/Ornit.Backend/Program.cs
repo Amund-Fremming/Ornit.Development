@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Ornit.Backend.src.Shared.AppData;
+using Ornit.Backend.src.Shared.Builders;
 using Ornit.Backend.src.Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,8 @@ services.AddDbContext<AppDbContext>(o =>
         o.UseNpgsql(connectionString);
     }
 });
+
+TypeScriptTypeGenerator.Create();
 
 var app = builder.Build();
 

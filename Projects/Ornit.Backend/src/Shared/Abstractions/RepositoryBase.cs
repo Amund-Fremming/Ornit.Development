@@ -4,7 +4,7 @@ using Ornit.Backend.src.Shared.ResultPattern;
 
 namespace Ornit.Backend.src.Shared.Abstractions
 {
-    public abstract class RepositoryBase<T>(ILogger<RepositoryBase<T>> logger, AppDbContext context) : IRepository<T> where T : class, IIdentityEntity
+    public abstract class RepositoryBase<T>(ILogger<RepositoryBase<T>> logger, AppDbContext context) : IRepository<T> where T : class, IIdentity
     {
         public async Task<Result<T>> GetById(int id)
         {

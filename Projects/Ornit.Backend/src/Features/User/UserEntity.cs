@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Ornit.Backend.src.Features.User
 {
-    public class UserEntity : IIdentityEntity
+    public class UserEntity : IIdentity, ITypeScriptModel
     {
         [Key]
         public int Id { get; set; }

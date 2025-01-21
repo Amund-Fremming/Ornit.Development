@@ -1,6 +1,10 @@
 # Setup Guide
 
 ## Image Processor Client
+Create a storage bucketunder R2 Object Storage > Overview > Create bucket
+Get your account id under Workers & Pages > Account ID (right side)
+Then we need to create a token, så on the same paage under account id press Manage Tokens > Create Token > Create Custom Token
+Give the token a name, and add 
 1. Create a worker in Cloudflares dashboard under Compute (Workers) > Create > Create Worker
 2. Create a js script for receiving your images
 ```js

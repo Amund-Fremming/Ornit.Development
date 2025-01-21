@@ -2,7 +2,7 @@
 
 namespace Ornit.Backend.src.Shared.Abstractions
 {
-    public interface IRepository<T> where T : IIdentityEntity
+    public interface IRepository<T> where T : IIdentity
     {
         Task<Result<T>> GetById(int id);
 

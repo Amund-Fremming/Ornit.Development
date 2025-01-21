@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ornit.Backend.src.Shared.ResultPattern;
 
@@ -7,7 +6,7 @@ namespace Ornit.Backend.src.Shared.Abstractions
 {
     [ApiController]
     [Route("api/[controller]")]
-    public abstract class EntityControllerBase<T>(ILogger<EntityControllerBase<T>> logger, IRepository<T> repository, IMapper mapper) : ControllerBase where T : IIdentityEntity
+    public abstract class EntityControllerBase<T>(ILogger<EntityControllerBase<T>> logger, IRepository<T> repository) : ControllerBase where T : IIdentity
     {
         [Authorize]
         [HttpGet("{id}")]

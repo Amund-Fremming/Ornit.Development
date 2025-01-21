@@ -5,7 +5,7 @@
 ### BE
 
 - Autmapper bug!!
-- Chnage base classes to use HttpContext
+- Change base classes to use HttpContext
 - Setup Cloudflare R2 from dashboard
 - Test ImageProcessorClient
 - ImageProcessorClient README
