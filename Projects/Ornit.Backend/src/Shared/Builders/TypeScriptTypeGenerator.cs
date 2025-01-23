@@ -10,41 +10,91 @@ namespace Ornit.Backend.src.Shared.Builders
 
         public static void Create()
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            var models = assembly.GetTypes()
-                .Where(t => t is { IsClass: true, IsAbstract: false } && typeof(ITypeScriptModel).IsAssignableFrom(t));
+            var types = GetTypeScriptModelTypes();
+            var fileContent = GenerateFileContent(types);
+            WriteToFile(fileContent);
+        }
 
+        private static IEnumerable<Type> GetTypeScriptModelTypes()
+            => Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .Where(t => t is { IsClass: true, IsAbstract: false }
+                    && typeof(ITypeScriptModel).IsAssignableFrom(t));
+
+        // Maybe write to frontend folder not in backend folder?
+        private static void WriteToFile(string fileContent)
+        {
+            var directory = Directory.GetCurrentDirectory();
+            var newDir = directory + "\\" + _filename;
+            File.WriteAllText(newDir, fileContent);
+        }
+
+        private static string GenerateFileContent(IEnumerable<Type> types)
+        {
             StringBuilder sb = new();
-            foreach (var model in models)
+            foreach (var type in types)
             {
-                sb.AppendLine($"export type\"{{\"");
-                foreach (var property in model.GetProperties())
+                sb.AppendLine($"export interface {type.Name} {"{"}");
+                foreach (var property in type.GetProperties())
                 {
                     var tsPropertyName = ToCamelCase(property.Name);
-                    var tsType = ToTypeScriptType(property.GetType());
-                    sb.AppendLine($"    {tsType}: {tsPropertyName};");
+                    var tsType = ToTypeScriptType(property.PropertyType);
+                    sb.AppendLine($"    {tsPropertyName}: {tsType};");
                 }
-                sb.AppendLine("\"{\"");
+                sb.AppendLine($"{"}"}");
                 sb.AppendLine();
             }
 
-            string fullFile = sb.ToString();
+            return sb.ToString();
         }
 
-        private static string ToTypeScriptType(object value)
+        // Make prettier
+        private static string ToTypeScriptType(Type type)
         {
-            return value switch
+            if (type == typeof(int) ||
+                type == typeof(uint) ||
+                type == typeof(ulong) ||
+                type == typeof(long) ||
+                type == typeof(float) ||
+                type == typeof(double) ||
+                type == typeof(decimal)) return "number";
+            if (type == typeof(string) || type == typeof(char)) return "string";
+            if (type == typeof(bool)) return "boolean";
+            if (type.IsArray) return ToTypeScriptType(type.GetElementType()!) + "[]";
+
+            if (type.IsGenericType)
             {
-                int number => nameof(number),
-                string text => "string",
-                bool boolean => nameof(boolean),
-                char c => "char",
-                // Enumerable
-                // List
-                // Dict
-                // Objects
-                _ => throw new InvalidOperationException("Type does not exist")
-            };
+                var genericType = type.GetGenericTypeDefinition();
+
+                if (genericType == typeof(List<>) ||
+                    genericType == typeof(IList<>) ||
+                    genericType == typeof(IEnumerable<>))
+                {
+                    return ToTypeScriptType(type.GetGenericArguments()[0]) + "[]";
+                }
+
+                if (genericType == typeof(Dictionary<,>) || genericType == typeof(IDictionary<,>))
+                {
+                    var key = ToTypeScriptType(type.GetGenericArguments()[0]);
+                    var value = ToTypeScriptType(type.GetGenericArguments()[1]);
+                    return $"Map<{key}, {value}>";
+                }
+
+                if (genericType == typeof(HashSet<>) ||
+                    genericType == typeof(ISet<>))
+                {
+                    var value = ToTypeScriptType(type.GetGenericArguments()[0]);
+                    return $"Set<{value}>";
+                }
+            }
+
+            if (typeof(ITypeScriptModel).IsAssignableFrom(type))
+            {
+                var name = type.Name;
+                return name;
+            }
+
+            return "any";
         }
 
         private static string ToCamelCase(string name) => name[0..1].ToLower() + name[1..];

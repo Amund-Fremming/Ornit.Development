@@ -1,6 +1,8 @@
-﻿namespace Ornit.Backend.src.Features.User
+﻿using Ornit.Backend.src.Shared.Abstractions;
+
+namespace Ornit.Backend.src.Features.User
 {
-    public class UserDto
+    public class UserDto : ITypeScriptModel
     {
         public int Id { get; set; }
         public string Auth0Id { get; set; } = string.Empty;

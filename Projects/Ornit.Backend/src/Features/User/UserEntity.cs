@@ -12,6 +12,14 @@ namespace Ornit.Backend.src.Features.User
 
         public string Email { get; set; } = string.Empty;
 
+        // TODO: remove
+        public IEnumerable<UserDto> Users { get; set; }
+
+        public IEnumerable<int> Ints { get; set; }
+        public Dictionary<int, UserDto> UserMap { get; set; }
+        public IDictionary<int, UserDto> IUserMap { get; set; }
+        public HashSet<UserDto> Hash { get; set; }
+
         public UserEntity()
         { }
 
