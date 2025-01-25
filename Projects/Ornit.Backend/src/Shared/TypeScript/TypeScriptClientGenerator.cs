@@ -36,18 +36,22 @@ public static class TypeScriptClientGenerator
 
     private static string ToTextClient(MethodInfo method)
     {
-        // NEEDS FIX
-        var endpointBase = "TODO:ENDPOINT_BASE";
-        var methodEndpoint = "TODO:METHOD_ENDPOINT";
-        var httpMethod = "TODO:HTTPMETHOD";
-        var authorization = true ? $"Authorization: \"Bearer {{token}}\"" : "";
+        try
+        {
+            // NEEDS FIX
+            var endpointBase = "TODO:ENDPOINT_BASE";
+            var methodEndpoint = "TODO:METHOD_ENDPOINT";
+            var httpMethod = "TODO:HTTPMETHOD";
+            var authorization = true ? $"Authorization: \"Bearer {{token}}\"" : "";
 
-        var sb = new StringBuilder();
-        var methodName = ToCamelCase(method.Name);
-        var methodParams = method.GetParameters()
-            .Select(ToTypeScriptParameter);
+            var sb = new StringBuilder();
+            var methodName = ToCamelCase(method.Name);
+            var methodParams = method.GetParameters()
+                .OfType<ParameterInfo>()
+                .Select(ToTypeScriptParameter)
+                .Aggregate(string.Empty, string.Concat);
 
-        sb.AppendLine($$"""
+            sb.AppendLine($$"""
 			const {{methodName}} = async ({{methodParams}}) => {
 				try {
 					const response = await fetch(`{{endpointBase}}/{{methodEndpoint}}`, {
@@ -70,17 +74,22 @@ public static class TypeScriptClientGenerator
 				}
 			};
 		""");
+            sb.AppendLine();
 
-        sb.AppendLine();
-
-        return sb.ToString();
+            return sb.ToString();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
     }
 
     private static string ToTypeScriptParameter(ParameterInfo paramInfo)
     {
         var space = " ";
         var paramTsType = ToTypeScriptType(paramInfo.ParameterType);
-        return string.Concat(paramTsType, space, paramInfo.Name);
+        var result = string.Concat(paramTsType, space, paramInfo.Name);
+        return result;
     }
 
     private static IEnumerable<Type> GetControllerClasses()

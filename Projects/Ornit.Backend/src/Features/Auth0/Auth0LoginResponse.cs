@@ -1,8 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using Ornit.Backend.src.Shared.Abstractions;
+using System.Text.Json.Serialization;
 
 namespace Ornit.Backend.src.Features.Auth0
 {
-    public record Auth0LoginResponse
+    public record Auth0LoginResponse : ITypeScriptModel
     {
         [JsonPropertyName("access_token")]
         public string? AccessToken { get; init; }

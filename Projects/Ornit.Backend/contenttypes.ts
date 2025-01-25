@@ -15,3 +15,22 @@ export interface UserEntity {
     hash: Set<UserDto>;
 }
 
+export interface Auth0LoginResponse {
+    accessToken: string;
+    refreshToken: string;
+    scope: string;
+    expiresIn: number;
+    tokenType: string;
+}
+
+export interface Auth0RegisterResponse {
+    id: string;
+    email: string;
+    emailVerified: boolean;
+}
+
+export interface AuthRequest {
+    email: string;
+    password: string;
+}
+
