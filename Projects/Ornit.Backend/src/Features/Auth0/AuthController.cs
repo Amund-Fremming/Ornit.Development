@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ornit.Backend.src.Features.User;
 using Ornit.Backend.src.Shared.Common;
@@ -9,7 +8,7 @@ namespace Ornit.Backend.src.Features.Auth0
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthController(ILogger<AuthController> logger, IAuthService _authService, IUserRepository _userRepository, IMapper _mapper) : ControllerBase
+    public class AuthController(ILogger<AuthController> logger, IAuthService _authService, IUserRepository _userRepository) : ControllerBase
     {
         // Summary:
         //     This endpoint is only used for testing if the token is parsed correctly.
@@ -98,7 +97,11 @@ namespace Ornit.Backend.src.Features.Auth0
                 }
 
                 var auth0Response = registerResult.Data;
-                var userEntity = _mapper.Map<UserEntity>(auth0Response);
+                var userEntity = new UserEntity()
+                {
+                    Email = request.Email,
+                    Auth0Id = auth0Response.Id,
+                };
                 var userResult = await _userRepository.Create(userEntity);
                 if (userResult.IsError)
                 {

@@ -1,4 +1,3 @@
-﻿namespace Ornit.Backend.src.Shared.Abstractions
-{
-    public interface ITypeScriptModel;
-}
+﻿namespace Ornit.Backend.src.Shared.Abstractions;
+
+public interface ITypeScriptModel;

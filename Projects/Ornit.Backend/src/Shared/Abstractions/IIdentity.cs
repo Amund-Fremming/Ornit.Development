@@ -1,7 +1,6 @@
-﻿namespace Ornit.Backend.src.Shared.Abstractions
+﻿namespace Ornit.Backend.src.Shared.Abstractions;
+
+public interface IIdentity
 {
-    public interface IIdentity
-    {
-        public int Id { get; set; }
-    }
+    public int Id { get; set; }
 }

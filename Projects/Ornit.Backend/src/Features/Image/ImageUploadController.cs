@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ornit.Backend.src.Shared.Common;
+using Ornit.Backend.src.Shared.Image;
 
 namespace Ornit.Backend.src.Features.Image
 {
