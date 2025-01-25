@@ -1,4 +1,4 @@
-﻿namespace Ornit.Backend.src.Shared.Builders;
+﻿namespace Ornit.Backend.src.Shared.TypeScript;
 
 public static class ServiceCollectionExtensions
 {
