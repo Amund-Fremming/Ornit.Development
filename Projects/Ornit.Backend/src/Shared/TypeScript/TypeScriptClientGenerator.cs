@@ -22,15 +22,19 @@ public static class TypeScriptClientGenerator
 {
     public static void Generate()
     {
-        var controllerClasses = GetControllerClasses();
-        // Convert all this to a big linq
-        foreach (var controllerClass in controllerClasses)
+        try
         {
-            var methods = GetCustomMethods(controllerClass);
-            foreach (var method in methods)
-            {
-                var textClient = ToTextClient(method);
-            }
+            var controllerClasses = GetControllerClasses();
+            // Convert all this to a big linq
+
+            var textClients = controllerClasses
+                .Select(c => GetCustomMethods(c)
+                       .Select(ToTextClient)
+                       .Aggregate(string.Empty, string.Concat));
+        }
+        catch (Exception)
+        {
+            throw;
         }
     }
 
@@ -86,10 +90,17 @@ public static class TypeScriptClientGenerator
 
     private static string ToTypeScriptParameter(ParameterInfo paramInfo)
     {
-        var space = " ";
-        var paramTsType = ToTypeScriptType(paramInfo.ParameterType);
-        var result = string.Concat(paramTsType, space, paramInfo.Name);
-        return result;
+        try
+        {
+            var space = " ";
+            var paramTsType = ToTypeScriptType(paramInfo.ParameterType);
+            var result = string.Concat(paramTsType, space, paramInfo.Name);
+            return result;
+        }
+        catch (Exception)
+        {
+            throw;
+        }
     }
 
     private static IEnumerable<Type> GetControllerClasses()
@@ -103,20 +114,4 @@ public static class TypeScriptClientGenerator
             BindingFlags.Public |
             BindingFlags.Instance |
             BindingFlags.DeclaredOnly);
-
-    /*
-     * Psuedo
-     * - get all types
-     * - foreach type
-     *  - select ( to text client )
-     * - foreach text client
-     *  - CreateClient
-     * - foreach type
-     *  - get url base
-     *  - select ( to endpoint
-     */
-
-    // GetControllerTypes
-    // ToTextClient()
-    // ToUrlBase
 }
