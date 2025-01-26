@@ -15,7 +15,7 @@ namespace Ornit.Backend.src.Features.Auth0
         //
         // Remarks:
         //     Remove when development is finished.
-        [HttpPost("Authenticate")]
+        [HttpPost("authenticate")]
         [Authorize]
         public IActionResult Authenticate()
         {
@@ -61,7 +61,7 @@ namespace Ornit.Backend.src.Features.Auth0
         // Remarks:
         //     Store values in a safe place.
         //     Do NOT delete the service method.
-        [HttpPost("login")]
+        [HttpGet("login")]
         [AllowAnonymous]
         public async Task<IActionResult> Login(AuthRequest request)
         {
