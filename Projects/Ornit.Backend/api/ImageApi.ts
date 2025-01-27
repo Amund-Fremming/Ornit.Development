@@ -1,3 +1,4 @@
+
 	const uploadImage = async (form: File) => {
 		try {
 			const response = await fetch(`api/Image/`, {

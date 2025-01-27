@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Ornit.Backend.src.Shared.Abstractions;
 using System.Reflection;
 using System.Text;
 using static Ornit.Backend.src.Shared.TypeScript.TypeScriptCommon;
@@ -28,9 +29,9 @@ public static class TypeScriptClientGenerator
             var controllerClasses = GetControllerClasses();
 
             var textClients = controllerClasses
-                .Select(cls => GetCustomMethods(cls)
-                       .Select(method => ToTextClient(method, cls))
-                       .Aggregate(string.Empty, string.Concat));
+                .Select(GetCustomMethods)
+                .Select(ToTextClient)
+                .ToList();
 
             for (int i = 0; i < controllerClasses.Count(); i++)
             {
@@ -57,27 +58,41 @@ public static class TypeScriptClientGenerator
      * - Sending params in body or in url
      */
 
-    private static string ToTextClient(MethodInfo method, Type type)
+    private static string ToTextClient(MethodInfo[] methodInfos)
     {
         try
         {
-            var endpointBase = GetEndpointBase(type);
+            var topContent = new StringBuilder();
+            var content = new StringBuilder();
+            var usedImports = new HashSet<string>();
+            foreach (var method in methodInfos)
+            {
+                {
+                    var endpointBase = GetEndpointBase(method.DeclaringType!);
 
-            var methodEndpoint = (method.GetCustomAttributes()
-                .FirstOrDefault(a => a is HttpMethodAttribute) as HttpMethodAttribute)?
-                .Template ?? "";
+                    var methodEndpoint = (method.GetCustomAttributes()
+                        .FirstOrDefault(a => a is HttpMethodAttribute) as HttpMethodAttribute)?
+                        .Template ?? "";
 
-            var httpMethod = GetHttpVerb(method.GetCustomAttributes());
-            var authorization = true ? $"Authorization: \"Bearer {{token}}\"" : "";
+                    var httpMethod = GetHttpVerb(method.GetCustomAttributes());
+                    var authorization = true ? $"Authorization: \"Bearer {{token}}\"" : "";
 
-            var sb = new StringBuilder();
-            var methodName = ToCamelCase(method.Name);
-            var methodParams = method.GetParameters()
-                .OfType<ParameterInfo>()
-                .Select(ToTypeScriptParameter)
-                .Aggregate(string.Empty, string.Concat);
+                    var methodName = ToCamelCase(method.Name);
+                    var methodParams = method.GetParameters()
+                        .OfType<ParameterInfo>()
+                        .Select(ToTypeScriptParameter)
+                        .Aggregate(string.Empty, string.Concat);
 
-            sb.AppendLine($$"""
+                    foreach (var param in method.GetParameters())
+                    {
+                        if (typeof(ITypeScriptModel).IsAssignableFrom(param.ParameterType) && !usedImports.Contains(param.ParameterType.Name))
+                        {
+                            topContent.AppendLine($"import {{ {param.ParameterType.Name} }} from \"../contenttypes\";");
+                            usedImports.Add(param.ParameterType.Name);
+                        }
+                    }
+
+                    content.AppendLine($$"""
 			const {{methodName}} = async ({{methodParams}}) => {
 				try {
 					const response = await fetch(`{{endpointBase}}/{{methodEndpoint}}`, {
@@ -100,9 +115,13 @@ public static class TypeScriptClientGenerator
 				}
 			};
 		""");
-            sb.AppendLine();
+                    content.AppendLine();
+                }
+            }
+            topContent.AppendLine();
+            topContent.Append(content);
 
-            return sb.ToString();
+            return topContent.ToString();
         }
         catch (Exception)
         {

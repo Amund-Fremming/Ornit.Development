@@ -1,3 +1,5 @@
+import { AuthRequest } from "../contenttypes";
+
 	const authenticate = async () => {
 		try {
 			const response = await fetch(`api/Auth/authenticate`, {
