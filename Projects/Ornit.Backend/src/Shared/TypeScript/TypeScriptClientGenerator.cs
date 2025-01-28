@@ -13,6 +13,7 @@ namespace Ornit.Backend.src.Shared.TypeScript;
  *
  * - FEATURE: add a flag to say if its development build or production build, so we can remove logs
  * - FEATURE: Do we want to throw on not 200 response or return some message
+ * - FEATURE: Return some message when 404 and 500 and so on
  *
  * - FIX: add params to body or param
  * - FIX: client needs to specify the data returned ??
