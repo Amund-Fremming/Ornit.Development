@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Ornit.Backend.src.Shared.Abstractions;
 using System.Reflection;
@@ -8,16 +9,19 @@ using static Ornit.Backend.src.Shared.TypeScript.TypeScriptCommon;
 namespace Ornit.Backend.src.Shared.TypeScript;
 
 /*
- * INFO
+ * TODO
  *
- * ToTextClient
- * - Needs testing
- * - Do we want to throw on not 200 response or return some message
+ * - FEATURE: add a flag to say if its development build or production build, so we can remove logs
+ * - FEATURE: Do we want to throw on not 200 response or return some message
  *
- * General
- * - Maybe add a flag to say if its development build or production build
- * - Then we can remove the logging and throwing errors to try and hide information
+ * - FIX: add params to body or param
+ * - FIX: client needs to specify the data returned ??
  *
+ * - BUG: Dictionary<T, T> does not work as param
+ *
+ * - ADD: Sending data in params
+ * - ADD: Sending data in body
+ * - ADD: Adding token in params if authorization
  */
 
 public static class TypeScriptClientGenerator
@@ -27,7 +31,6 @@ public static class TypeScriptClientGenerator
         try
         {
             var controllerClasses = GetControllerClasses();
-
             var textClients = controllerClasses
                 .Select(GetCustomMethods)
                 .Select(ToTextClient)
@@ -35,7 +38,9 @@ public static class TypeScriptClientGenerator
 
             for (int i = 0; i < controllerClasses.Count(); i++)
             {
-                CreatedFile(controllerClasses.ElementAt(i).Name, textClients.ElementAt(i));
+                var controllerName = controllerClasses.ElementAt(i).Name;
+                var textClient = textClients.ElementAt(i);
+                CreatedFile(controllerName, textClient);
             }
         }
         catch (Exception)
@@ -52,76 +57,30 @@ public static class TypeScriptClientGenerator
         File.WriteAllText(filePath, content);
     }
 
-    /*
-     * Needs
-     * - Imports in files
-     * - Sending params in body or in url
-     */
-
     private static string ToTextClient(MethodInfo[] methodInfos)
     {
         try
         {
-            var topContent = new StringBuilder();
-            var content = new StringBuilder();
-            var usedImports = new HashSet<string>();
+            var tsImports = new StringBuilder();
+            tsImports.Append("import { ");
+            var objects = new HashSet<string>();
+
+            var tsFunctions = new StringBuilder();
             foreach (var method in methodInfos)
             {
-                {
-                    var endpointBase = GetEndpointBase(method.DeclaringType!);
+                var methodObjects = GetCustomObjects(method.GetParameters());
+                objects.UnionWith(methodObjects);
 
-                    var methodEndpoint = (method.GetCustomAttributes()
-                        .FirstOrDefault(a => a is HttpMethodAttribute) as HttpMethodAttribute)?
-                        .Template ?? "";
-
-                    var httpMethod = GetHttpVerb(method.GetCustomAttributes());
-                    var authorization = true ? $"Authorization: \"Bearer {{token}}\"" : "";
-
-                    var methodName = ToCamelCase(method.Name);
-                    var methodParams = method.GetParameters()
-                        .OfType<ParameterInfo>()
-                        .Select(ToTypeScriptParameter)
-                        .Aggregate(string.Empty, string.Concat);
-
-                    foreach (var param in method.GetParameters())
-                    {
-                        if (typeof(ITypeScriptModel).IsAssignableFrom(param.ParameterType) && !usedImports.Contains(param.ParameterType.Name))
-                        {
-                            topContent.AppendLine($"import {{ {param.ParameterType.Name} }} from \"../contenttypes\";");
-                            usedImports.Add(param.ParameterType.Name);
-                        }
-                    }
-
-                    content.AppendLine($$"""
-			const {{methodName}} = async ({{methodParams}}) => {
-				try {
-					const response = await fetch(`{{endpointBase}}/{{methodEndpoint}}`, {
-						method: "{{httpMethod}}",
-						headers: {
-							"Content-Type": "application/json",
-							{{authorization}}
-						}
-					});
-
-					if (!response.ok) {
-						const errorMessage = await response.json();
-						throw new Error(errorMessage);
-					}
-
-					const data = await response.json();
-					return data;
-				} catch (error) {
-					console.log("{{methodName}} error: " + error.message);
-				}
-			};
-		""");
-                    content.AppendLine();
-                }
+                var needsAuth = MethodNeedsAuth(method);
+                var clientMethodText = GetClientMethodString(method, needsAuth);
+                tsFunctions.AppendLine(clientMethodText);
             }
-            topContent.AppendLine();
-            topContent.Append(content);
 
-            return topContent.ToString();
+            var allTypes = string.Join(", ", objects);
+            tsImports.AppendLine($"{allTypes} }} from \"../contenttypes\";" + "\n");
+            tsImports.Append(tsFunctions);
+
+            return tsImports.ToString();
         }
         catch (Exception)
         {
@@ -129,8 +88,43 @@ public static class TypeScriptClientGenerator
         }
     }
 
-    private static string GetEndpointBase(Type type)
+    private static HashSet<string> GetCustomObjects(ParameterInfo[] parameterInfos)
     {
+        var objects = new HashSet<string>();
+        foreach (var param in parameterInfos)
+        {
+            var type = param.ParameterType;
+
+            if (ImplementsTypeScript(type))
+            {
+                objects.Add(type.Name);
+                continue;
+            }
+
+            if (type.IsArray)
+            {
+                objects.Add(type.GetElementType()!.Name);
+                continue;
+            }
+
+            if (type.IsGenericType)
+            {
+                foreach (var arg in type.GetGenericArguments())
+                {
+                    objects.Add(arg.Name);
+                }
+            }
+        }
+
+        return objects;
+    }
+
+    private static bool ImplementsTypeScript(Type type) => typeof(ITypeScriptModel).IsAssignableFrom(type);
+
+    private static string GetEndpointBase(MethodInfo method)
+    {
+        var type = method.DeclaringType!;
+
         var endpointTemplateBase = type.GetCustomAttribute<RouteAttribute>()?
             .Template ?? "";
 
@@ -177,4 +171,53 @@ public static class TypeScriptClientGenerator
             BindingFlags.Public |
             BindingFlags.Instance |
             BindingFlags.DeclaredOnly);
+
+    private static string GetClientMethodString(MethodInfo method, bool needsAuth)
+        => $$"""
+			const {{ToCamelCase(method.Name)}} = async ({{GetMethodParams(method, needsAuth)}}) => {
+				try {
+					const response = await fetch(`{{GetEndpointBase(method)}}/{{GetMethodEndpoint(method)}}`, {
+						method: "{{GetHttpVerb(method.GetCustomAttributes())}}",
+						headers: {
+							"Content-Type": "application/json",
+							{{GetAuthorizationHeaders(needsAuth)}}
+						}
+					});
+
+					if (!response.ok) {
+						const errorMessage = await response.json();
+						throw new Error(errorMessage);
+					}
+
+					const data = await response.json();
+					return data;
+				} catch (error) {
+					console.log("{{method.Name}} error: " + error.message);
+				}
+			};
+		""";
+
+    private static string GetAuthorizationHeaders(bool needsAuth) => needsAuth ? $"Authorization: `Bearer ${{token}}`" : "";
+
+    private static bool MethodNeedsAuth(MethodInfo method) => method.GetCustomAttributes().OfType<AuthorizeAttribute>().Any();
+
+    private static string GetMethodParams(MethodInfo method, bool needsAuth)
+    {
+        var parameters = method.GetParameters()
+            .OfType<ParameterInfo>()
+            .Select(ToTypeScriptParameter)
+            .Aggregate(string.Empty, string.Concat);
+
+        if (!needsAuth)
+        {
+            return parameters;
+        }
+
+        return string.IsNullOrEmpty(parameters) ? "token: string" : string.Concat(parameters, ", token: string");
+    }
+
+    private static string GetMethodEndpoint(MethodInfo method)
+        => (method.GetCustomAttributes()
+               .FirstOrDefault(a => a is HttpMethodAttribute) as HttpMethodAttribute)?
+               .Template ?? "";
 }

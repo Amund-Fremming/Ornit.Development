@@ -1,3 +1,4 @@
+import {  } from "../contenttypes";
 
 	const uploadImage = async (form: File) => {
 		try {
@@ -5,7 +6,7 @@
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
-					Authorization: "Bearer {token}"
+					
 				}
 			});
 
@@ -17,7 +18,6 @@
 			const data = await response.json();
 			return data;
 		} catch (error) {
-			console.log("uploadImage error: " + error.message);
+			console.log("UploadImage error: " + error.message);
 		}
 	};
-
