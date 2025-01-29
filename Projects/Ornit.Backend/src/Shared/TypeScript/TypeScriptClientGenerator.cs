@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
-using Ornit.Backend.src.Shared.Abstractions;
 using System.Reflection;
 using System.Text;
 using static Ornit.Backend.src.Shared.TypeScript.TypeScriptCommon;
@@ -12,17 +11,10 @@ namespace Ornit.Backend.src.Shared.TypeScript;
  * TODO
  *
  * - FEATURE: add a flag to say if its development build or production build, so we can remove logs
- * - FEATURE: Do we want to throw on not 200 response or return some message
- * - FEATURE: Return some message when 404 and 500 and so on
+ * - FEATURE: Return some message when 200, 401, 403, 404 and 500
  *
- * - FIX: add params to body or param
- * - FIX: client needs to specify the data returned ??
- *
- * - BUG: Dictionary<T, T> does not work as param
- *
- * - ADD: Sending data in params
- * - ADD: Sending data in body
- * - ADD: Adding token in params if authorization
+ * - FIX: client needs to specify the data returned
+ * - FIX: record and struct content generation does not work
  */
 
 public static class TypeScriptClientGenerator
@@ -72,8 +64,7 @@ public static class TypeScriptClientGenerator
                 var methodObjects = GetCustomObjects(method.GetParameters());
                 objects.UnionWith(methodObjects);
 
-                var needsAuth = MethodNeedsAuth(method);
-                var clientMethodText = GetClientMethodString(method, needsAuth);
+                var clientMethodText = GetClientMethodString(method);
                 tsFunctions.AppendLine(clientMethodText);
             }
 
@@ -96,13 +87,13 @@ public static class TypeScriptClientGenerator
         {
             var type = param.ParameterType;
 
-            if (ImplementsTypeScript(type))
+            if (IsCustomObjectType(type))
             {
                 objects.Add(type.Name);
                 continue;
             }
 
-            if (type.IsArray)
+            if (type.IsArray && IsCustomObjectType(type))
             {
                 objects.Add(type.GetElementType()!.Name);
                 continue;
@@ -110,17 +101,14 @@ public static class TypeScriptClientGenerator
 
             if (type.IsGenericType)
             {
-                foreach (var arg in type.GetGenericArguments())
-                {
-                    objects.Add(arg.Name);
-                }
+                objects.UnionWith(type.GetGenericArguments()
+                    .Where(IsCustomObjectType)
+                    .Select(t => t.Name));
             }
         }
 
         return objects;
     }
-
-    private static bool ImplementsTypeScript(Type type) => typeof(ITypeScriptModel).IsAssignableFrom(type);
 
     private static string GetEndpointBase(MethodInfo method)
     {
@@ -173,16 +161,37 @@ public static class TypeScriptClientGenerator
             BindingFlags.Instance |
             BindingFlags.DeclaredOnly);
 
-    private static string GetClientMethodString(MethodInfo method, bool needsAuth)
-        => $$"""
-			const {{ToCamelCase(method.Name)}} = async ({{GetMethodParams(method, needsAuth)}}) => {
+    private static string GetClientMethodString(MethodInfo method)
+    {
+        var needsAuth = method.GetCustomAttributes()
+            .OfType<AuthorizeAttribute>()
+            .Any();
+
+        var methodName = ToCamelCase(method.Name);
+        var typeScriptParams = GetTypeScriptParams(method, needsAuth);
+
+        var endpointBase = GetEndpointBase(method);
+        var methodUri = GetMethodEndpoint(method);
+
+        foreach (var param in method.GetParameters().Select(p => p.Name))
+        {
+            methodUri = methodUri.Replace($"{{{param}}}", $"${{{param}}}");
+        }
+
+        var httpVerb = GetHttpVerb(method.GetCustomAttributes());
+        var authorization = needsAuth ? $"Authorization: `Bearer ${{token}}`" : "";
+        var body = GetBody(method.GetParameters());
+
+        return $$"""
+			const {{methodName}} = async ({{typeScriptParams}}) => {
 				try {
-					const response = await fetch(`{{GetEndpointBase(method)}}/{{GetMethodEndpoint(method)}}`, {
-						method: "{{GetHttpVerb(method.GetCustomAttributes())}}",
+					const response = await fetch(`{{endpointBase}}/{{methodUri}}}`, {
+						method: "{{httpVerb}}",
 						headers: {
 							"Content-Type": "application/json",
-							{{GetAuthorizationHeaders(needsAuth)}}
-						}
+							{{authorization}}
+						},
+						{{body}}
 					});
 
 					if (!response.ok) {
@@ -197,24 +206,23 @@ public static class TypeScriptClientGenerator
 				}
 			};
 		""";
+    }
 
-    private static string GetAuthorizationHeaders(bool needsAuth) => needsAuth ? $"Authorization: `Bearer ${{token}}`" : "";
+    private static string GetBody(ParameterInfo[] parameterInfos)
+        => parameterInfos.Where(p => p.GetCustomAttributes().OfType<FromBodyAttribute>().Any())
+               .Select(p => $"body: JSON.stringify({p.Name}),")
+               .FirstOrDefault() ?? "";
 
-    private static bool MethodNeedsAuth(MethodInfo method) => method.GetCustomAttributes().OfType<AuthorizeAttribute>().Any();
-
-    private static string GetMethodParams(MethodInfo method, bool needsAuth)
+    private static string GetTypeScriptParams(MethodInfo method, bool needsAuth)
     {
-        var parameters = method.GetParameters()
-            .OfType<ParameterInfo>()
-            .Select(ToTypeScriptParameter)
-            .Aggregate(string.Empty, string.Concat);
-
-        if (!needsAuth)
+        var methodParams = string.Join(", ", method.GetParameters().Select(ToTypeScriptParameter));
+        if (needsAuth)
         {
-            return parameters;
+            var tokenString = methodParams.Length == 0 ? "token: string" : ", token: string";
+            methodParams = string.Concat(methodParams, tokenString);
         }
 
-        return string.IsNullOrEmpty(parameters) ? "token: string" : string.Concat(parameters, ", token: string");
+        return methodParams;
     }
 
     private static string GetMethodEndpoint(MethodInfo method)

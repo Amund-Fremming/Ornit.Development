@@ -15,6 +15,18 @@ export interface UserEntity {
     hash: Set<UserDto>;
 }
 
+export interface TestClass {
+    hey: string;
+}
+
+export interface TestRecord {
+    recordString: string;
+}
+
+export interface TestStruct {
+    recordString: string;
+}
+
 export interface Auth0LoginResponse {
     accessToken: string;
     refreshToken: string;

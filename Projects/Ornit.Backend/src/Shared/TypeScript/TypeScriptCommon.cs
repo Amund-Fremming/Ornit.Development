@@ -32,7 +32,7 @@ public static class TypeScriptCommon
 
     private static bool IsBooleanType(Type type) => type == typeof(bool);
 
-    private static bool IsCustomObjectType(Type type) => typeof(ITypeScriptModel).IsAssignableFrom(type);
+    public static bool IsCustomObjectType(Type type) => typeof(ITypeScriptModel).IsAssignableFrom(type);
 
     private static bool IsArrayType(Type type, out string tsType)
     {

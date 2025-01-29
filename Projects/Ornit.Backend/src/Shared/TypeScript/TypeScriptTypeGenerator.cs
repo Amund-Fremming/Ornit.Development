@@ -5,6 +5,8 @@ using static Ornit.Backend.src.Shared.TypeScript.TypeScriptCommon;
 
 namespace Ornit.Backend.src.Shared.TypeScript;
 
+// Remarks
+//     - Change directory of creation to frontend folder
 public static class TypeScriptTypeGenerator
 {
     public const string _filename = "contenttypes.ts";
@@ -22,7 +24,6 @@ public static class TypeScriptTypeGenerator
             .Where(t => t is { IsClass: true, IsAbstract: false }
                 && typeof(ITypeScriptModel).IsAssignableFrom(t));
 
-    // Maybe write to frontend folder not in backend folder?
     private static void WriteToFile(string fileContent)
     {
         var directory = Directory.GetCurrentDirectory();
