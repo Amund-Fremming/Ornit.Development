@@ -19,7 +19,10 @@ internal class Program
         services.AddRepositories();
         services.AddServices();
 
-        services.AddTypeScriptSupport();
+        services.AddTypeScriptSupport(options =>
+        {
+            options.ClientLogging = false;
+        });
 
         services.ConfigureSwaggerAuthentication();
         builder.ConfigureJwtValidation();

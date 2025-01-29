@@ -19,10 +19,14 @@ namespace Ornit.Backend.src.Shared.TypeScript;
 
 public static class TypeScriptClientGenerator
 {
-    public static void Generate()
+    private static bool ClientLogging = false;
+
+    public static void Generate(bool clientLogging)
     {
         try
         {
+            ClientLogging = clientLogging;
+
             var controllerClasses = GetControllerClasses();
             var textClients = controllerClasses
                 .Select(GetCustomMethods)
@@ -181,6 +185,7 @@ public static class TypeScriptClientGenerator
         var httpVerb = GetHttpVerb(method.GetCustomAttributes());
         var authorization = needsAuth ? $"Authorization: `Bearer ${{token}}`" : "";
         var body = GetBody(method.GetParameters());
+        var catchClauseConsoleLog = ClientLogging ? $"console.log(\"{method.Name} error: \" + error.message);" : "";
 
         return $$"""
 			const {{methodName}} = async ({{typeScriptParams}}) => {
@@ -202,7 +207,7 @@ public static class TypeScriptClientGenerator
 					const data = await response.json();
 					return data;
 				} catch (error) {
-					console.log("{{method.Name}} error: " + error.message);
+				    {{catchClauseConsoleLog}}
 				}
 			};
 		""";
