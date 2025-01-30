@@ -16,15 +16,25 @@ export interface UserEntity {
 }
 
 export interface TestClass {
-    hey: string;
+    prop1: string;
+    prop2: string;
 }
 
+export enum TestEnum {
+    One,
+    Two,
+    Three,
+}
 export interface TestRecord {
+    testNOOOOWO: string;
     recordString: string;
 }
 
 export interface TestStruct {
-    recordString: string;
+    p4: string;
+    p1: string;
+    p2: string;
+    p3: string;
 }
 
 export interface Auth0LoginResponse {

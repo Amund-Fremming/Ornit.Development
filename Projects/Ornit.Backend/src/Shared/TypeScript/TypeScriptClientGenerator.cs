@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Ornit.Backend.src.Shared.Extensions;
 using System.Reflection;
 using System.Text;
 using static Ornit.Backend.src.Shared.TypeScript.TypeScriptCommon;
@@ -10,11 +11,8 @@ namespace Ornit.Backend.src.Shared.TypeScript;
 /*
  * TODO
  *
- * - FEATURE: add a flag to say if its development build or production build, so we can remove logs
  * - FEATURE: Return some message when 200, 401, 403, 404 and 500
- *
  * - FIX: client needs to specify the data returned
- * - FIX: record and struct content generation does not work
  */
 
 public static class TypeScriptClientGenerator
@@ -103,6 +101,12 @@ public static class TypeScriptClientGenerator
                 continue;
             }
 
+            if (type.IsEnum)
+            {
+                objects.Add(type.Name);
+                continue;
+            }
+
             if (type.IsGenericType)
             {
                 objects.UnionWith(type.GetGenericArguments()
@@ -127,7 +131,7 @@ public static class TypeScriptClientGenerator
         return endpointBase;
     }
 
-    private static object GetHttpVerb(IEnumerable<Attribute> attributes)
+    private static string GetHttpVerb(IEnumerable<Attribute> attributes)
         => attributes switch
         {
             _ when attributes.OfType<HttpGetAttribute>().Any() => "GET",
@@ -185,6 +189,8 @@ public static class TypeScriptClientGenerator
         var httpVerb = GetHttpVerb(method.GetCustomAttributes());
         var authorization = needsAuth ? $"Authorization: `Bearer ${{token}}`" : "";
         var body = GetBody(method.GetParameters());
+
+        var returnType = GetReturnType(method);
         var catchClauseConsoleLog = ClientLogging ? $"console.log(\"{method.Name} error: \" + error.message);" : "";
 
         return $$"""
@@ -211,6 +217,27 @@ public static class TypeScriptClientGenerator
 				}
 			};
 		""";
+    }
+
+    private static string GetReturnType(MethodInfo method)
+    {
+        if (method.ReturnType != typeof(IActionResult))
+        {
+            return string.Empty;
+        }
+
+        var services = new ServiceCollection();
+        services.AddServices();
+        services.AddRepositories();
+        services.AddControllers();
+        services.AddLogging();
+
+        var serviceProvider = services.BuildServiceProvider();
+        var controller = serviceProvider.GetRequiredService(method.DeclaringType!);
+
+        var invokedMethod = method.Invoke(controller, null);
+
+        return invokedMethod?.GetType()?.Name ?? string.Empty;
     }
 
     private static string GetBody(ParameterInfo[] parameterInfos)

@@ -8,7 +8,7 @@ namespace Ornit.Backend.src.Features.Test
     public class TestController : ControllerBase
     {
         [HttpDelete("{prm}")]
-        public IActionResult Delete([FromBody] string bodyString, int prm) => Ok();
+        public IActionResult Deletee([FromBody] string bodyString, TestEnum testEnum) => Ok();
 
         [HttpPatch("patch/{str}")]
         [Authorize]

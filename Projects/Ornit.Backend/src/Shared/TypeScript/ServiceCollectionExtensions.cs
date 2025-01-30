@@ -7,6 +7,11 @@ public static class ServiceCollectionExtensions
         var options = new TypeScriptGenerationOptions();
         configureOptions?.Invoke(options);
 
+        if (!options.GenerateOnBuild)
+        {
+            return services;
+        }
+
         TypeScriptTypeGenerator.Generate();
         TypeScriptClientGenerator.Generate(options.ClientLogging);
 

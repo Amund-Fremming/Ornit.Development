@@ -16,6 +16,7 @@ public static class TypeScriptCommon
                _ when IsGenericType(type, out var tsType) => tsType,
                _ when IsCustomObjectType(type) => type.Name,
                _ when IsFormFileType(type) => "File",
+               _ when type.IsEnum => type.Name,
                _ => throw new InvalidOperationException("The type was not matched in ToTypeScriptType.")
            };
 

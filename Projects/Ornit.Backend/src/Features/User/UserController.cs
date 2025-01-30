@@ -11,7 +11,7 @@ namespace Ornit.Backend.src.Features.User
         [Authorize]
         public IActionResult Get(string param, string[] srs)
         {
-            return Ok();
+            return Ok(new UserDto());
         }
     }
 }

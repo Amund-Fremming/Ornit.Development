@@ -2,8 +2,8 @@
 
 namespace Ornit.Backend.src.Features.Test
 {
-    public class TestRecord : ITypeScriptModel
+    public class TestRecord(string RecordString) : ITypeScriptModel
     {
-        public string RecordString { get; set; }
+        public string? TestNOOOOWO { get; set; }
     }
 }

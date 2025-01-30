@@ -5,11 +5,9 @@ using static Ornit.Backend.src.Shared.TypeScript.TypeScriptCommon;
 
 namespace Ornit.Backend.src.Shared.TypeScript;
 
-// Remarks
-//     - Change directory of creation to frontend folder
 public static class TypeScriptTypeGenerator
 {
-    public const string _filename = "contenttypes.ts";
+    public const string Filename = "contenttypes.ts";
 
     public static void Generate()
     {
@@ -22,12 +20,12 @@ public static class TypeScriptTypeGenerator
         => Assembly.GetExecutingAssembly()
             .GetTypes()
             .Where(t => t is { IsClass: true, IsAbstract: false }
-                && typeof(ITypeScriptModel).IsAssignableFrom(t));
+                && typeof(ITypeScriptModel).IsAssignableFrom(t) || t.IsEnum);
 
     private static void WriteToFile(string fileContent)
     {
         var directory = Directory.GetCurrentDirectory();
-        var newDir = directory + "\\" + _filename;
+        var newDir = directory + "\\" + Filename;
         File.WriteAllText(newDir, fileContent);
     }
 
@@ -36,8 +34,16 @@ public static class TypeScriptTypeGenerator
         StringBuilder sb = new();
         foreach (var type in types)
         {
-            sb.AppendLine($"export interface {type.Name} {"{"}");
-            foreach (var property in type.GetProperties())
+            if (type.IsEnum)
+            {
+                sb.Append(GetTypeScriptEnum(type));
+                continue;
+            }
+
+            sb.AppendLine($"export interface {type.Name} {{");
+
+            var properties = GetProperties(type);
+            foreach (var property in properties)
             {
                 var tsPropertyName = ToCamelCase(property.Name);
                 var tsType = ToTypeScriptType(property.PropertyType);
@@ -49,4 +55,31 @@ public static class TypeScriptTypeGenerator
 
         return sb.ToString();
     }
+
+    private static string GetTypeScriptEnum(Type type)
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine($"export enum {type.Name} {{");
+
+        var values = Enum.GetValues(type).Cast<object>();
+        foreach (var value in values)
+        {
+            sb.AppendLine($"    {Enum.GetName(type, value)},");
+        }
+
+        sb.AppendLine("}");
+        return sb.ToString();
+    }
+
+    private static IEnumerable<Prop> GetProperties(Type type)
+        => type.GetProperties()
+               .Select(p => new Prop(p.Name, p.PropertyType))
+               .Union(type.GetConstructors()
+                   .First()
+                   .GetParameters()
+                   .Select(p => new Prop(ToPascalCase(p.Name!), p.ParameterType))!);
+
+    private static string ToPascalCase(string name) => name[0..1].ToUpper() + name[1..];
 }
+
+internal record Prop(string Name, Type PropertyType);
