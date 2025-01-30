@@ -16,7 +16,7 @@ import { TestEnum } from "../contenttypes";
 				throw new Error(errorMessage);
 			}
 
-			const data:  = await response.json();
+			const data = await response.json();
 			return data;
 		} catch (error) {
 		    
@@ -38,7 +38,7 @@ import { TestEnum } from "../contenttypes";
 				throw new Error(errorMessage);
 			}
 
-			const data:  = await response.json();
+			const data = await response.json();
 			return data;
 		} catch (error) {
 		    
@@ -60,7 +60,7 @@ import { TestEnum } from "../contenttypes";
 				throw new Error(errorMessage);
 			}
 
-			const data:  = await response.json();
+			const data = await response.json();
 			return data;
 		} catch (error) {
 		    

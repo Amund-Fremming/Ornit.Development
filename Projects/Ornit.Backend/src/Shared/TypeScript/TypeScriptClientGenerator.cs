@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
-using Ornit.Backend.src.Shared.Extensions;
 using System.Reflection;
 using System.Text;
 using static Ornit.Backend.src.Shared.TypeScript.TypeScriptCommon;
@@ -11,8 +10,8 @@ namespace Ornit.Backend.src.Shared.TypeScript;
 /*
  * TODO
  *
- * - FEATURE: Return some message when 200, 401, 403, 404 and 500
- * - FIX: client needs to specify the data returned
+ * - Return some message when 200, 401, 403, 404 and 500 (Result pattern or TanStack)
+ * - Client needs to specify the data returned
  */
 
 public static class TypeScriptClientGenerator
@@ -221,23 +220,7 @@ public static class TypeScriptClientGenerator
 
     private static string GetReturnType(MethodInfo method)
     {
-        if (method.ReturnType != typeof(IActionResult))
-        {
-            return string.Empty;
-        }
-
-        var services = new ServiceCollection();
-        services.AddServices();
-        services.AddRepositories();
-        services.AddControllers();
-        services.AddLogging();
-
-        var serviceProvider = services.BuildServiceProvider();
-        var controller = serviceProvider.GetRequiredService(method.DeclaringType!);
-
-        var invokedMethod = method.Invoke(controller, null);
-
-        return invokedMethod?.GetType()?.Name ?? string.Empty;
+        throw new NotImplementedException("GetReturnType in TypeScriptGenerator is not implemented yet, stupid.");
     }
 
     private static string GetBody(ParameterInfo[] parameterInfos)

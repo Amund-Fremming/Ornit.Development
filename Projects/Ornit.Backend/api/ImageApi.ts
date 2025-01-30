@@ -16,7 +16,7 @@ import {  } from "../contenttypes";
 				throw new Error(errorMessage);
 			}
 
-			const data: IActionResult = await response.json();
+			const data = await response.json();
 			return data;
 		} catch (error) {
 		    
