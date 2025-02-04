@@ -1,25 +1,13 @@
 # Tasklist
 
-## TODO
+## BE
 
-### BE
-
-- Autmapper bug!!
+- Generate return types for api methods
+- Add path and name options for the builder
 - Change base classes to use HttpContext
-- Setup Cloudflare R2 from dashboard
-- Test ImageProcessorClient
-- ImageProcessorClient README
+- Image handling: r2 docs, test client
 
-- Auto generation of ts types for frontend
-- Auto generation of api routes for frontend
-- Auto generation of fetching data for frontend
-
-### FE
+## FE
 
 - Auth provider with refresh token functionality and integration (Needs testing)
-
-#### Maybe
-
-- Pagination ??
-- Auth0 google and facebook login
-- Use Validator.ThrowIfNull to catch errors early ??
+- inverted flag rather than a bool sendt in
